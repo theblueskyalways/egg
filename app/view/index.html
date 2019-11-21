@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>taining.chen.web</title>
+    <style>
+        .screen{
+            width: 1000px;
+            height:500px;
+            position: fixed;
+            left: 0;
+            top:0;
+            right:0;
+            bottom:0;
+            margin: auto;
+            border: dashed 10px #000000;
+            background-image: url("/public/img/bg.gif");
+            background-size: 100% 100%  ;
+            background-repeat: no-repeat;
+        }
+        .box{
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+        .box div{
+            background-color: #00a0ea;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .box .w{
+
+            top: -50px;
+         }
+        .box .s{
+
+          }
+        .box .a{
+            left: -50px;
+        }
+        .box .d{
+            left: 50px;
+        }
+        .snake{
+            display: flex;
+            left: 100px;
+            top: 100px;
+        }
+        .snake .body{
+            width: 10px;
+            height: 10px;
+            background-color: #00a345;
+            position: absolute;
+            top: 100px;
+            left: 50px;
+            border-radius: 50%;
+        }
+        .food{
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #6f1500;
+            background:  url("/public/img/food.png") center no-repeat;
+            background-size: cover;
+        }
+        .score{
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            position: fixed;
+            right: 50px;
+            top: 50px;
+            font-size: 30px;
+            background-color: #6f1500;
+            color: #ffffff;
+        }
+        .head{
+            z-index: 2;
+        }
+        .head img{
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -50%;
+            z-index: 3;
+            transform: rotate(0deg);
+        }
+        .head img.up{
+             transform: rotate(-90deg);
+         }
+        .head img.down{
+            transform: rotate(90deg);
+        }
+        .head img.left{
+            transform: rotate(180deg);
+        }
+        .head img.right{
+            transform: rotate(0deg);
+        }
+        .rule{
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            text-align: left;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            color: white;
+            background-color: #0a1323;
+            display: none;
+            padding: 10px;
+        }
+        .help{
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            position: fixed;
+            right: 300px;
+            top: 50px;
+            font-size: 30px;
+            background-color: #6f1500;
+            color: #ffffff;
+            cursor: pointer;
+
+        }
+        .goindex{
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            position: fixed;
+            right: 550px;
+            top: 50px;
+            font-size: 30px;
+            background-color: #6f1500;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .goindex a{
+            text-decoration: none;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<script>
+    window.onload = function(){
+
+        var up = document.getElementById('up'),
+        down = document.getElementById('down'),
+                left = document.getElementById('left'),
+        right = document.getElementById('right'),
+                arrbody = document.getElementsByClassName('body'),
+                cou = document.getElementById('coucols'),
+                 arrf = cou.getElementsByTagName('div');
+        var step = 40;
+        var time = null;
+        var screen = document.getElementById('screen');
+        var head = document.getElementById('head');
+        var hdbg = head.getElementsByTagName('img')[0];
+        var help = document.getElementById('help');
+        var rule = document.getElementById('rule');
+        help.onclick = function(){
+            if(rule.style.display == 'none'){
+                rule.style.display = 'block'
+            }else {
+                rule.style.display = 'none'
+            }
+
+        };
+//        document.onclick = function(){
+//            if(window.event.target.className!='rule'){
+//                rule.style.display = 'none'
+//            }
+//        };
+        console.log(hdbg);
+        var snake = document.getElementById('snake');
+
+        function addfood(){
+            var food = document.createElement('div');
+            food.classList.add('food');
+            food.setAttribute('id','food');
+            var x = Math.ceil(Math.random()*49);
+            var y = Math.ceil(Math.random()*99);
+            food.style.top = x*10+'px';
+            food.style.left = y*10+'px';
+            screen.appendChild(food)
+        }
+        addfood();
+        function eat(){
+            var newbody = document.createElement('div');
+            var food = document.getElementById('food');
+            newbody.classList.add('body');
+            if (head.offsetLeft==food.offsetLeft&&head.offsetTop==food.offsetTop){
+                snake.appendChild(newbody);
+                score.innerHTML = '得分：'+(arrbody.length-2);
+                screen.removeChild(food);
+                addfood()
+            }
+        }
+function headfx(){
+    hdbg.setAttribute('class','');
+    if(step ==37){
+        hdbg.classList.add('left');
+    }else if(step == 38){
+        hdbg.classList.add('up');
+    }else if(step == 39){
+        hdbg.classList.add('right');
+    }else if(step == 40){
+        hdbg.classList.add('down');
+    }
+}
+        //移动
+        function move (){
+
+            function over(){
+                for (var k = arrbody.length-1; k>1; k--) {
+                    if (head.offsetLeft==arrbody[k].offsetLeft&&head.offsetTop==arrbody[k].offsetTop){
+                        alert('游戏结束');
+                        window.location.href = '/';
+                        clearInterval(time);
+                        return
+                    }
+                }
+            }
+            over();
+            eat();
+            if (head.offsetLeft <0||head.offsetTop<0||head.offsetLeft>990||head.offsetTop>490){
+                alert('游戏结束');
+                clearInterval(time);
+                window.location.href = '/';
+                return
+            }
+            if(!(event)){
+                if (step ==38){
+                    up.style.backgroundColor = '#000';
+                    arrbody[0].style.top=arrbody[0].offsetTop-10 +'px';
+                    for (let i = arrbody.length-1; i >0; i--) {
+                        arrbody[i].style.left = arrbody[i-1].style.left;
+                        arrbody[i].style.top= arrbody[i-1].style.top;
+                    }
+                }else if (step ==37) {
+                    left.style.backgroundColor = '#000';
+                    arrbody[0].style.left = arrbody[0].offsetLeft - 10 + 'px';
+                    for (let i = arrbody.length - 1; i > 0; i--) {
+                        arrbody[i].style.left = arrbody[i - 1].style.left;
+                        arrbody[i].style.top = arrbody[i - 1].style.top;
+                    }
+
+                }else if (step ==39) {
+                    right.style.backgroundColor = '#000';
+                    arrbody[0].style.left = arrbody[0].offsetLeft + 10 + 'px';
+                    for (let i = arrbody.length - 1; i > 0; i--) {
+                        arrbody[i].style.left = arrbody[i - 1].style.left;
+                        arrbody[i].style.top = arrbody[i - 1].style.top;
+                    }
+
+
+                }else if (step ==40) {
+
+                    down.style.backgroundColor = '#000';
+                    arrbody[0].style.top = arrbody[0].offsetTop + 10 + 'px';
+                    for (let i = arrbody.length - 1; i > 0; i--) {
+                        arrbody[i].style.left = arrbody[i - 1].style.left;
+                        arrbody[i].style.top = arrbody[i - 1].style.top;
+                    }
+
+                }
+                clearInterval(time);
+                time = setInterval(move,500);
+
+            }else {
+                var last = step;
+                step = parseInt(event.keyCode);
+                if (step ==38){
+                    if(last==40){
+                            step =  40;
+                            time = setInterval(move,50);
+                            return;
+                        }else if(last==step){
+                        step =  38;
+                        time = setInterval(move,50);
+                            return
+                        }else {
+                        headfx();
+                        up.style.backgroundColor = '#000';
+                        arrbody[0].style.top=arrbody[0].offsetTop-10 +'px';
+                        for (let i = arrbody.length-1; i >0; i--) {
+                            arrbody[i].style.left = arrbody[i-1].style.left;
+                            arrbody[i].style.top= arrbody[i-1].style.top;
+                        }
+                    }
+                }else if (step ==37) {
+                    if(last==39){
+                        step = 39;
+                        time = setInterval(move,50);
+                        return;
+                    }if(last==step){
+                        step =  37;
+                        time = setInterval(move,50);
+                        return;
+                    }else {
+                        headfx();
+                        left.style.backgroundColor = '#000';
+                        arrbody[0].style.left = arrbody[0].offsetLeft - 10 + 'px';
+                        for (let i = arrbody.length - 1; i > 0; i--) {
+                            arrbody[i].style.left = arrbody[i - 1].style.left;
+                            arrbody[i].style.top = arrbody[i - 1].style.top;
+                        }
+                    }
+                }else if (step ==39) {
+                    if (last==37){
+                        step = 37;
+                        time = setInterval(move,50);
+                        return;
+                    }else if (last==step){
+                        step = 39;
+                        time = setInterval(move,50);
+                        return;
+                    }else {
+                        headfx();
+                        right.style.backgroundColor = '#000';
+                        arrbody[0].style.left = arrbody[0].offsetLeft + 10 + 'px';
+                        for (let i = arrbody.length - 1; i > 0; i--) {
+                            arrbody[i].style.left = arrbody[i - 1].style.left;
+                            arrbody[i].style.top = arrbody[i - 1].style.top;
+                        }
+                    }
+                }else if (step ==40) {
+                    if (last==38){
+                        step = 38;
+                        time = setInterval(move,50);
+                        return;
+                    }else  if(step == last){
+                        step = 40;
+                        time = setInterval(move,50);
+                        return;
+                    }else {
+                        headfx();
+                        down.style.backgroundColor = '#000';
+                        arrbody[0].style.top = arrbody[0].offsetTop + 10 + 'px';
+                        for (let i = arrbody.length - 1; i > 0; i--) {
+                            arrbody[i].style.left = arrbody[i - 1].style.left;
+                            arrbody[i].style.top = arrbody[i - 1].style.top;
+                        }
+                    }
+                }
+                clearInterval(time);
+                time = setInterval(move,500);
+            }
+
+        }
+        clearInterval(time);
+
+
+        document.onkeydown= function(){
+            clearInterval(time);
+            for (var j = 0; j < arrf.length; j++) {
+                arrf[j].style.backgroundColor = '#00a0ea';
+            }
+            move()
+        };
+
+    }
+</script>
+<body>
+<div class="box" id="coucols">
+    <div class="w" id="up">上</div>
+    <div class="s" id="down">下</div>
+    <div class="a" id="left">左</div>
+    <div class="d" id="right">右</div>
+</div>
+<div class="screen" id="screen">
+    <div class="snake" id="snake">
+        <div class="body head" id="head" >
+            <img src="/public/img/head.png" alt="">
+        </div>
+        <div class="body"></div>
+
+
+    </div>
+</div>
+<div class="score" id="score">
+    分数：0
+</div>
+<div class="goindex"><a href="/">回到首页</a></div>
+<div class="help" id="help">游戏帮助</div>
+<div class="rule" id="rule" style="display: none">
+    <p>
+        <h2>游戏规则及操作介绍</h2>
+    <p>1.按下键盘方向键开始游戏，上下左右控制贪食蛇的方向。</p>
+    <p>2.得分会在贪食蛇吃到食物后增加，每吃到一个食物得分加1。</p>
+    <p>3.当贪食蛇头部碰到墙壁或者触碰到自己身体时游戏会结束，点击弹窗的确定按钮可以重置游戏得分会清零。</p>
+    <p>4.对游戏内容有疑问或者有好的建议可以通过QQ846195601与我取得联系。</p>
+    <p>5.祝您游戏愉快！</p>
+    </p>
+</div>
+</body>
+</html>
