@@ -1,0 +1,35 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+ul,ol{
+	list-style-type: none;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+input{
+	outline: none;/*去掉表单显示颜色*/
+	border: 0; /*去掉边框*/
+}
+img{
+	/*在ie浏览器中引入的图片自带边框*/
+	border: none;
+}
+.clear:before,.clear:after{
+	content: "";/*虚拟盒子不占位*/
+	display: table;
+}
+.clear:after{
+	clear: both;
+}
+.clear{
+	/*zoom: 1;兼容问题*/
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}

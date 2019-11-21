@@ -1,0 +1,246 @@
+body{
+    background: url(../img/hero%20img/1%252Fassets%252Fimg%252Fow-heroes-bg.jpg) no-repeat top center;
+    background-color: #d0c7dc;
+}
+.heroes-selector{
+    margin-top: 160px;
+    margin-bottom: 20px;
+}
+.heroes-selector .inner{
+    width: 100%;
+    max-width: 1250px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+.hero-selector-intro{
+    font-family: Arial,"microsoft yahei",sans-serif;
+    font-size: 61px;
+    font-style: italic;
+    font-weight: 400;
+    font-variant: normal;
+    line-height: normal;
+    letter-spacing: .8px;
+}
+.intro-text{
+    font-size: 24px;
+    line-height: 35px;
+    margin-top: 20px;
+}
+.hero-selector-box li{
+    box-sizing: border-box;
+    width: 24%;
+    float: left;
+    cursor: pointer;
+    height: 40px;
+    padding: 5px 120px;
+    background: rgba(255,255,255,0.2);
+    background-origin:padding-box;
+    background-clip:padding-box;
+    border: 2px transparent solid;
+    border-radius: 2px;
+    text-align: center;
+    color: #1a325e;
+}
+.hero-selector{
+    margin-bottom: 20px;
+}
+.hero-selector-box li.is-select{
+    background: rgba(255,255,255,1);
+}
+.hero-selector-box li:hover{
+    background: rgba(255,255,255,1);
+}
+.hero-selector-box li>.icon {
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6px;
+    height: 22px;
+    display: block;
+    fill: #1a325e;
+    float: left;
+}
+.hero-selector-box .text{
+
+    text-align: center;
+    margin: 0 auto;
+    float: left;
+
+}
+.heros-box-content{
+    position: relative;
+}
+.heros-box-content li{
+    width: 13%;
+    float: left;
+    margin-right: .4%;
+    height: 285px;
+    border: solid 2px #FFFFFF;
+    margin-bottom: 5px;
+    transition: .4s;
+    z-index: 3;
+}
+.heros-box-content li a{
+    display: block;
+}
+.heros-box-content li img{
+    width: 100%;
+    height: 100%;
+
+}
+.hero-box{
+    background: url("../img/hero%20img/1%252Fassets%252Fimg%252Fhero-portrait-detailed%252Fhero-portrait-detailed-bg.jpg");
+    position: relative;
+    transition: .4s;
+    overflow: hidden;
+
+}
+.hero-box.is-over img,.hero-box.is-over .container,.hero-box.is-over .pray{
+                              transform: scale(1.1);
+}
+.hero-box.is-over .pray{
+    display: none;
+}
+
+.hero-box.is-over .portrait-title{
+    color: #1a325e;
+}
+
+.container{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: rgba(40,53,79,.9);
+}
+.hero-box .portrait-title{
+    font-family: "Big Noodle Too","microsoft yahei",impact,sans-serif;
+    font-style: italic;
+    color: #ffffff;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    bottom: 6px;
+   font-size: 24px;
+    transition: inherit;
+    text-align: center;
+    font-weight: 400;
+}
+.hero-box.support.is-setout .container,.hero-box.carry.is-setin .container,.hero-box.tank.is-select .container{
+    background-color: rgba(0,195,255,1);
+    z-index: 3;
+}
+
+.hero-box .container>.icon {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    fill: #fff;
+    -webkit-transition: inherit;
+    transition: inherit;
+    width: 20%;
+    height: 20px;
+}
+.hero-box .pray{
+
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transition: inherit;
+    z-index: 1;
+}
+.hero-box.tank.is-select .pray{
+    box-shadow: inset 0 0 57px 14px rgba(0,195,255,.7);
+    visibility: visible;
+    opacity: 1;
+}
+.hero-box.carry.is-select .pray{
+    box-shadow: inset 0 0 0 283px rgba(200,200,200,.5);
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
+}
+.hero-box.support.is-select .pray{
+    box-shadow: inset 0 0 0 283px rgba(200,200,200,.5);
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
+}
+.hero-box.carry.is-setin{
+   /*bottom: 295px;*/
+    transform: translate3d(0 ,-295px,0 );
+    transition: 0.4s;
+}
+.hero-box.tank.is-setin{
+    transform: translate3d(0 ,587px,0 );
+    transition: 0.4s;
+}
+.hero-box.tank.dva.is-setin{
+    transform: translate3d(0 ,882px,0 );
+    transition: 0.4s;
+}
+.hero-box.tank.is-setin .pray{
+    box-shadow: inset 0 0 0 283px rgba(200,200,200,.5);
+    visibility: visible;
+    opacity: 1;
+}
+.hero-box.carry.is-setin .pray{
+    box-shadow: inset 0 0 57px 14px rgba(0,195,255,.7);
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
+}
+.hero-box.support.is-setin .pray{
+    box-shadow: inset 0 0 0 283px rgba(200,200,200,.5);
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
+}
+.hero-box.carry.is-setout{
+    /*bottom: 295px;*/
+    transform: translate3d(0 ,295px,0 );
+    transition: 0.4s;
+}
+.hero-box.tank.is-setout{
+    transform: translate3d(-170.5px ,295px,0 );
+    transition: 0.4s;
+}
+.hero-box.tank.dva.is-setout{
+    transform: translate3d(1029px  ,0px,0 );
+    transition: 0.4s;
+}
+.hero-box.carry.widowmaker.is-setout{
+    transform: translate3d(1029px,-587px,0 );
+}
+.hero-box.support.is-setout{
+    transform: translate3d(-170.5px,-882px,0 );
+}
+.hero-box.tank.is-setout .pray{
+    box-shadow: inset 0 0 0 283px rgba(200,200,200,.5);
+    visibility: visible;
+    opacity: 1;
+}
+.hero-box.carry.is-setout .pray{
+    box-shadow: inset 0 0 0 283px rgba(200,200,200,.5);
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
+}
+.hero-box.support.is-setout .pray{
+    box-shadow: inset 0 0 57px 14px rgba(0,195,255,.7);
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
+}
+.hero-box.carry.is-over .container,.hero-box.tank.is-over .container,.hero-box.support.is-over .container{
+    background-color: #FFFFFF;
+}
+.hero-box.is-over .icon{
+    fill:#1a325e ;
+}

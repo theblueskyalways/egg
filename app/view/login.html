@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>暴雪游戏通行证登录</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="img/index/overwatchicon.ico">
+
+</head>
+<body>
+<div class="inner">
+    <h1 class="logo">暴雪游戏通行证登录</h1>
+    <div class="login-waper">
+        <div class="login">
+            <form action="" method="post" id="password-form" class="username-requiredinput-focus">
+                <div id="login-input-container" class="">
+                    <div id="js-errors" class="alert alert-error alert-icon" style="">暴雪游戏通行证名称为电子邮箱地址。</div>
+                    <div class="control-group">
+                        <label id="accountName-label" class="control-label" for="accountName">电子邮箱</label>
+                        <div class="controls">
+                            <input  id="accountName" name="accountName" maxlength="320" type="text" class="input-block input-large" placeholder="电子邮箱" >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label id="password-label" class="control-label" for="password">密码</label>
+                        <div class="controls">
+                            <input  id="password" name="password" title="密码" maxlength="16" type="password"  class="input-block input-large"  placeholder="密码"  data-show-password-message="显示" data-hide-password-message="隐藏">
+                        </div>
+                    </div>
+                    <!--<div class="persistWrapper">-->
+                        <!--<label id="persistLogin-label" class="checkbox-label css-label hide checked" for="persistLogin">-->
+                            <!--<input aria-labelledby="persistLogin-label" id="persistLogin" name="persistLogin" type="checkbox" checked="checked" tabindex="1">-->
+                            <!--<span class="input-checkbox"></span>-->
+                            <!--保持登录状态-->
+                        <!--</label>-->
+                    <!--</div>-->
+                </div>
+            </form>
+                <div class="control-group submit ">
+                    <button type="submit" id="submit" class="btn btn-primary btn-large btn-block" >
+                        登录
+                    </button>
+                </div>
+                <div class="thirdparty-line">
+                    <span>或使用以下账号登录</span>
+                </div>
+                <div class="control-group useResponse">
+                    <form method="post" id="neteaseLogin" class="third-party-login">
+                        <button id="netease" class="btn ">
+                            使用网易通行证登录
+                        </button>
+                    </form>
+                </div>
+            <ul id="help-links">
+                <li>
+                    <a rel="internal" href="javascript:;" id="signup">
+                        免费创建暴雪游戏通行证
+                    </a>
+                </li>
+                <li>
+                    <a rel="internal" href="javascript:;"  id="loginSupport">
+                        无法登录？
+                    </a>
+                </li>
+                <li>
+                    <a rel="internal" href="javascript:;" id="tokenResync">
+                        安全令重新同步
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<footer id="footer" class="footer zh-cn">
+    <div id="nav-client-footer" class="nav-client">
+        <div class="mobileFooterEnabled footer-content footer-desktop grid-container">
+            <!--<div class="nav-section support-feedback">-->
+            <!--<div class="nav-left">-->
+                <!--<div id="nav-feedback">-->
+                    <!--<a class="nav-item nav-a nav-item-btn" href="" data-track-id="security-center-footer">-->
+                        <!--<i class="nav-icon-24-blue nav-icon-globe"></i>安全中心</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+            <div class="nav-section">
+                <div class="nav-left nav-logo-group">
+                    <div class="footer-links nav-left">
+                        <a class="nav-item nav-a" href="#" data-analytics="global-nav" data-analytics-placement="Footer - eula">Battle.net EULA</a>
+                        <span>|</span>
+                        <a class="nav-item nav-a" href="#" data-analytics="global-nav" data-analytics-placement="Footer - Privacy">隐私</a>
+                        <span>|</span>
+                        <a class="nav-item nav-a" href="#" data-analytics="global-nav" data-analytics-placement="Footer - Terms">法律条款</a>
+                        <span>|</span>
+                        <a class="nav-item nav-a" href="#" data-analytics="global-nav" data-analytics-placement="Footer - copyright">著作权侵权</a>
+                        <div class="link-row"></div>
+                        <a class="nav-item nav-a" href="#" data-analytics="global-nav" data-analytics-placement="Footer - CN License">沪网文〔2017〕9633-727号</a>
+                        <span>|</span>
+                        <a class="nav-item nav-a" href="#" data-analytics="global-nav" data-analytics-placement="Footer - CN Portal">增值电信业务经营许可证编号：沪B2－20080012</a>
+                        <div class="link-row"></div>
+                        <span class="nav-item nav-text">互联网违法和不良信息举报电话：0571-28090163</span>
+                        <span>|</span>
+                        <span class="nav-item nav-text">沪公网安备：31011502002167</span>
+                        <div class="copyright">©2018暴雪娱乐有限公司版权所有。</div>
+                        <!--<div class="nav-footer-icon-container">-->
+                            <!--<ul class="nav-footer-icon-list">-->
+                                <!--<li class="nav-footer-icon-list-item"><a class="nav-footer-icon-link footer-icon-cyberpolice" href="http://sh.cyberpolice.cn/infoCategoryListAction.do?act=initjpg" target="_blank"></a></li>-->
+                                <!--<li class="nav-footer-icon-list-item"><a class="nav-footer-icon-link footer-icon-zx100" href="http://www.zx110.org/" target="_blank"></a></li>-->
+                                <!--<li class="nav-footer-icon-list-item"><a class="nav-footer-icon-link footer-icon-sgs" href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&amp;entyId=20111011175417664" target="_blank"></a></li>-->
+                                <!--<li class="nav-footer-icon-list-item"><a class="nav-footer-icon-link footer-icon-shjbzx" href="http://www.shjbzx.cn/" target="_blank"></a></li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div class="nav-ratings">
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="js/gj.js"></script>
+
+<script >
+    var subMit = document.getElementById('submit');
+    var acountName = document.getElementById('accountName');
+    var password = document.getElementById('password');
+    var errors = document.getElementById('js-errors');
+    subMit.onmousedown = function(){
+        subMit.style.backgroundColor = '#095386';
+    };
+    subMit.onmouseup = function(){
+        subMit.style.backgroundColor = '#0e86ca';
+    }
+    subMit.onclick = function(){
+        console.log(1);
+        var name = acountName.value;
+        var adimPassword = password.value;
+        if(name==''){
+            errors.classList.add('false');
+            errors.innerHTML = '暴雪游戏通行证名称不能为空'
+        }else{
+            var reg =/\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
+            var state=reg.test(name);
+            if (!state){
+                errors.innerHTML = '暴雪游戏通行证名称为电子邮箱地址。'
+            }
+        }
+        if(adimPassword==''){
+            errors.classList.add('false');
+            errors.innerHTML = '密码不能为空'
+        }else if(adimPassword==123456){
+            alert('登录成功');
+            window.location.href = '贪食蛇/贪食蛇v4.1.html'
+        }else {
+            errors.classList.add('false');
+            errors.innerHTML = '密码错误'
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+
+#buttonlist li:first-of-type .progress-svg.is-select{
+    animation: dash 14.5s linear;
+}
+#buttonlist li:nth-of-type(2) .progress-svg.is-select{
+    animation: dash 5.5s linear;
+}
+#buttonlist li:nth-of-type(3) .progress-svg.is-select{
+    animation: dash 4.5s linear;
+}
+#buttonlist li:nth-of-type(4) .progress-svg.is-select{
+    animation: dash 6.5s linear;
+}
+#buttonlist li:nth-of-type(5) .progress-svg.is-select{
+    animation: dash 6.5s linear;
+}
+#buttonlist li:nth-of-type(6) .progress-svg.is-select{
+    animation: dash 11.5s linear;
+}
+.header-bottom-bg{
+    background:url("../img/hero%20img/dva/1%252Fassets%252Fimg%252Fdividers%252Fwing.png") no-repeat center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: 100;
+    height: 30px;
+}
+.hero-detail-bg.story{
+    background: url("../img/hero%20img/orisa/1%252Fassets%252Fimages%252Fhero%252Forisa%252Fbackground-story.jpg")  no-repeat;
+    background-size: cover;
+    background-position: center top;
+}
+.wall-paper{
+    background: url("../img/hero%20img/dva/a%252Fimages%252F2018%252F5%252F30%252Fdbc91afc6618ad96eaa910123e496215.jpg");
+    background-size: cover;
+}
+.cut-picture{
+    background: url("../img/hero%20img/dva/2%252Fmedia%252Fscreenshots%252FDva03-thumb.jpg");
+    background-size: cover;
+}
+.cut-picture-2{
+    background: url("../img/hero%20img/dva/2%252Fmedia%252Fscreenshots%252FDva04-thumb.jpg");
+    background-size: cover;
+}
+.cut-picture-3{
+    background: url("../img/hero%20img/dva/2%252Fmedia%252Fscreenshots%252FDva02-thumb.jpg");
+    background-size: cover;
+}
+.cut-picture-4{
+    background: url("../img/hero%20img/dva/2%252Fmedia%252Fscreenshots%252FDva01-thumb.jpg");
+    background-size: cover;
+}
+.hero-media-photo.news{
+    background: url("../img/hero%20img/dva/2%252Fmedia%252FReferenceKits%252Fdva_thumb.jpg");
+    background-size: cover;
+}
+.orgin-picture{
+    background: url("../img/hero%20img/dva/2%252Fmedia%252Fartwork%252Fdva-thumb.jpg");
+    background-size: cover;
+}
+.photo-content-picture{
+    padding-bottom: 50%;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px 5px;
+    display: block;
+    background-size: auto 100%;
+    position: relative;
+    z-index: 99;
+    background-image:url("");
+    background-repeat: no-repeat;
+    background-position: center;
+}

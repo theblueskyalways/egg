@@ -1,0 +1,573 @@
+@media (min-width: 1300px) {
+
+    body,html{
+        background-color: #f0edf2;
+        width: 100%;
+        height: 100%;
+    }
+    #popBox{
+        position: absolute;
+        z-index: 99999;
+        display: none;
+        width: 80%;
+        height: 100%;
+    }
+    .w-light-box .head{
+        height: 15%;
+        padding: 20px 0 ;
+        border-bottom: 1px solid rgba(0,195,255,.1);
+        font-size: 12px;
+    }
+    .w-light-box .head .title{
+
+        padding-bottom: 20px;
+        color: white;
+        font: normal normal normal 10px "microsoft yahei",Arial,sans-serif;
+        font-size: 28px;
+    }
+
+    .w-light-box{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        border: 1px solid rgba(0,195,255,.1);
+        background: rgba(3,12,21,.98);
+    }
+    #popBox .closeBtn {
+        position: absolute;
+        z-index: 99999;
+        top: 5px;
+        right: 5px;
+        display: block;
+        overflow: hidden;
+        width: 36px;
+        height: 36px;
+        transition: opacity .5s ease 0s;
+        text-indent: -999px;
+        opacity: .8;
+        background: url('../img/index/1%252Fimages%252Fheroes%252Fdetail%252Fexit.3OOEf.png') 0 0 no-repeat;
+        background-size: contain;}
+    .bg{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        overflow: hidden;
+
+    }
+    .bg-v{
+        /*position: absolute;*/
+        display: flex;
+        width:auto;
+        height: auto;
+        min-width: 100%;
+        min-height: 100%;
+        margin: 0 auto;
+        /*left: 0;*/
+        /*top: 0;*/
+    }
+    .bg-v source{
+        flex: 1;
+    }
+    .home-header{
+        height: 100%;
+        width: 100%;
+        min-height: 100%;
+        min-width: 100%;
+background-color: #FFF;
+        display: flex;
+        margin-top: 50px;
+        flex-direction: column;
+        justify-content:center;
+        box-sizing: border-box;
+
+
+    }
+    .home-header-logo{
+        margin: 0 auto;
+        min-width: 350px;
+        z-index: 21;
+        width: 30%;
+        background: url("../img/index/1%252Fassets%252Fimg%252Fpages%252Fhome%252Fanniversary%252Flogo-overwatch-full.png") center no-repeat;
+        background-size: 100% 100%;
+        height: 30%;
+    }
+    .home-header__tagline{
+        z-index: 22;
+        font-family: Big Noodle Too,impact,sans-serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 250%;
+        color: white;
+        margin-bottom: 40px;
+    }
+    .u-relative{
+        width: 100%;
+        z-index: 21;
+        display: flex;
+        justify-content: space-around;
+    }
+    .home-header__buynow{
+        color: white;
+        background-color: #ff9c00;
+        letter-spacing: .025em;
+        font-weight: 700;
+        vertical-align: middle;
+        border-radius: 2px;
+        padding: 10px 40px;
+        margin-top: 2%;
+    }
+    .home-header__buynow:hover{
+        background-color: #ffb033;
+    }
+    .home-header__intrduce{
+        color: black;
+        background-color: white;
+        letter-spacing: .025em;
+        font-weight: 700;
+        vertical-align: middle;
+        border-radius: 2px;
+        padding: 10px 25px;
+        border: solid 2px white;
+        margin-top: 2%;
+        margin-bottom: 5%;
+    }
+    .home-header__intrduce span{
+        width: 16px;
+        height: 19px;
+        margin-right: 8px;
+        display: inline-block;
+        background: url(../img/index/Farrawbutton.png) 0 -49px;
+        vertical-align: middle;
+    }
+    .home-header__intrduce:hover{
+        background-color: transparent;
+        transition: .2s;
+        color: white;
+    }
+    .home-header__intrduce:hover span{
+        background-position: 0 0px;
+    }
+    .news-panels{
+        padding-top: 50px;
+        background-color: #f0edf2;
+        padding-bottom: 5%;
+        background-clip: border-box;
+    }
+
+    .news-panels .inner{
+        width: 1250px;
+        margin: 0 auto;
+    }
+
+    .news-panels h2{
+        text-align: center;
+        margin: 10px 0 ;
+    }
+    .news-panels .grid-item.left .content-bg{
+        display: block;
+        background: url("../img/index/Fc7952798cfcdb84ceed46f9f803fd3ae.jpg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-origin: content-box;
+        background-position: center center;
+
+
+        padding: 0 5%;
+        height: 100%;
+    }
+    .news-panels .grid-item.left{
+        float: left;
+    }
+    .news-panels .grid-item.right .content-bg{
+        display: block;
+        background: url("../img/index/F0772b627b319b0296d9e889505280784.jpg");
+        background-origin: content-box;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center center;
+        /*box-sizing: border-box;*/
+        padding: 0 5%;
+        height: 100%;
+    }
+    .news-panels .grid-item.right{
+        float: right;
+    }
+    .grid-item{
+        width: 50%;
+        height:300px;
+
+    }
+    .grid-item .content{
+        height: 100%;
+    }
+    .news-panels .cheakall-btn{
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        line-height: 20px;
+        color:#0cbdff ;
+    }
+    .news-panels .cheakall{
+        width: 200px;
+        height: 20px;
+        padding: 10px 50px;
+        margin: 0 auto;
+        text-align: center;
+        border: 3px solid #0cbdff ;
+    }
+    .news-panels .cheakall:hover{
+        background-color: #0cbdff;
+    }
+    .news-panels .cheakall:hover .cheakall-btn{
+        color: white;
+    }
+    .activity{
+        width: 100%;
+        background: url("../img/index/Fnano_cola_bg.jpg") no-repeat bottom center;
+        background-size: cover;
+
+    }
+    .activity .inner{
+        width: 1250px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .activity-left,.activity-right{
+        width: 50%;
+    }
+    .activity-left{
+        float: left;
+        margin-bottom: 50px;
+    }
+
+
+.ow-logo-cn{
+    max-width: 280px;
+    width: 100%;
+}
+.message-dates{
+    font-weight: 700;
+    font-size: 32px;
+    color: #1b84e0;
+}
+.message-title{
+    font-size: 80px;
+    color: #f938a3;
+    font-style: italic;
+    font-weight: 400;
+    font-variant: normal;
+    line-height: normal;
+    letter-spacing: .5px;
+}
+    .message-content{
+        font-size: 30px;
+        line-height: 48px;
+        color: #1b84e0;
+    }
+    .button.m-lg{
+        border: 3px solid #ff9c00;
+        background-color: #ff9c00;
+        font-size: 20px;
+        font-weight: 700;
+        padding: 0  10px;
+        color: white;
+    }
+    .activity-right {
+        max-width: 50%;
+    margin: 30px auto;
+        float: right;
+    }
+    .activity-right img{
+        width: 100%;
+    }
+    .media-card{
+        position: relative;
+    }
+    .media-card:before{
+        content: '';
+        display: block;
+        background: url("../img/index/youtube-btn-ylw.png");
+        width: 140px;
+        height: 140px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        margin: auto;
+    }
+    .explore{
+        color: #FFFFFF;
+background-color: #FFF;
+        position: relative;
+
+    }
+    .explore .inner{
+
+    }
+    .explore .bg{
+        background: no-repeat center;
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        content: '';
+        z-index: 1;
+        transition: 2s;
+        /*animation: 20s linear bg-fade-out;*/
+
+    }
+    .explore .bg.now{
+        opacity: 1;
+
+    }
+    .explore .bg.fir{
+        background-image:  url("../img/index/Fcairo-desktop.jpg");
+    }
+    .explore .bg.sec{
+        background-image:  url("../img/index/fight-for-the-future%252Flondon-2560.jpg");
+    }
+    .explore .bg.thr{
+        background-image:  url("../img/index/fight-for-the-future%252Fvolskaya-2560.jpg");
+    }
+    .explore .intro-heading{
+        color: white;
+    }
+
+
+    .explore .inner{
+        width: 1250px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px 20px;
+        position: relative;
+        z-index: 2;
+    }
+    .intro-heading{
+        color: #345177;
+        font-size: 65px;
+        margin-bottom: 44px;
+        text-transform: none;
+        font-style: italic;
+        text-align: center;
+        font-weight: 400;
+
+        text-shadow: 0 4px 5px rgba(60,72,96,.5);
+    }
+    .intro-text{
+        text-align: center;
+        font-weight: 400;
+        font-size: 24px;
+        margin-bottom: 50px;
+    }
+    .button.m-lg{
+        text-align: center;
+        margin: auto;
+    }
+    .hero-content{
+        background: url("../img/index/hero-bg.jpg") no-repeat ;
+        margin: 0 auto;
+        background-size: 100% 100%;
+        padding: 50px 0 ;
+
+    }
+    .hero-content .inner{
+        width: 1250px;
+        margin: 0 auto;
+    }
+
+    .show-lg{
+        width: 100%;
+        position: relative;
+        margin: 0 auto;
+
+    }
+    .hero-indro{
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .hero-indro{
+        width: 100%;
+        background-image: linear-gradient(90deg,
+        rgba(42,55,81,0) 0,
+        rgba(42,55,81,.8) 25%,
+        rgba(42,55,81,.8) 75%,
+        rgba(42,55,81,0));
+    }
+    .hero-indro-box{
+        display: none;
+    }
+    .hero-indro-box.is-select{
+        display: block;
+    }
+    .full-width-container{
+        width: 100%;
+        margin: 0 auto;
+    }
+    .u-max-width-containe{
+        width: 1250px;
+        margin: 0 auto;
+    }
+    .hero-photo{
+        position: relative;
+        width: 746px;
+        height: 440px;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-position: right;
+        min-width: 746px;
+        min-height: 440px;
+        z-index: 97;
+        right: 200px;
+    }
+    .hero-information{
+        width: 100%;
+        text-align: center;
+        color: #f0edf2;
+        padding-left: 30%;
+        font-size: inherit;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        text-rendering: optimizeLegibility;
+        box-sizing: border-box;
+    }
+    .spotlight-caption{
+        min-height: 48px;
+    }
+    .hero-name{
+        width: 100%;
+        text-align: center;
+        color: #f0edf2;
+        padding-left: 30%;
+        text-shadow: 0 1px 2px #000;
+        font-size: 60px;
+        font-style: italic;
+        font-weight: 400;
+        font-variant: normal;
+        line-height: normal;
+        letter-spacing: .8px;
+        box-sizing: border-box;
+    }
+    .header-logo{
+        width: 100%;
+        height: 100%;
+    }
+    .hero-portrait-group{
+        padding: 0 40px;
+    }
+    .hero-portrait-group .hero-logo{
+        border-radius: 5px;
+        background: black;
+        width: 80px;
+        height: 80px;
+        transform: skew(-5deg);
+    }
+    .hero-portrait-group .hero-logo.is-select{
+        background: #f7931e;
+        transform: scale(1.1 ,1.2) skew(-5deg);
+    }
+     .hero-name-portrait.is-select{
+        bottom: 10px;
+        background-color: #c8c8c8;
+    }
+    .hero-portrait-group>li{
+        float: left;
+        margin-right: 10px;
+        position: relative;
+        margin-top: 30px;
+    }
+    .hero-name-portrait{
+        display: inline-block;
+        width: 80px;
+        font-size: 13px;
+        text-align: center;
+        border-radius: 2px;
+        position: relative;
+        bottom: 0;
+        z-index: 97;
+        background-color: white;
+    }
+    .middle-bg{
+        background: url("../img/index/Fdorado-desktop.jpg") no-repeat center;
+        background-size:100% 100%;
+        position: fixed;
+        bottom: 0;
+        top:0;
+        height: 1440px;
+        width: 100%;
+        z-index: -1;
+
+    }
+    .middle-bg.is-select{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .view-window{
+        width: 100%;
+        height: 400px;
+        position: relative;
+    }
+    .view-window span{
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        cursor: pointer;
+    }
+    .up {
+        top: 0;
+    }
+
+    .down {
+        bottom: 0;
+    }
+
+    .join{
+        background: url("../img/index/bg-museum.jpg") no-repeat;
+        background-size:  100%;
+        padding: 50px 0;
+    }
+    .intro-heading-gradient-blue{
+        color: #345177;
+        font-size: 65px;
+        margin-bottom: 44px;
+        text-transform: none;
+        font-style: italic;
+        text-align: center;
+        font-weight: 400;
+        text-shadow: 0 4px 5px rgba(60,72,96,.5);
+    }
+    .page-wrapper{
+        text-align: center;
+        padding-left: 300px;
+    }
+    .join .inner{
+        width: 1250px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .widowmaker-default-pc{
+        background: url("../img/index/widowmaker-default-pc.png");
+        background-size: 100% auto;
+        width: 50%;
+        height: 972px;
+        position: absolute;
+        bottom: -200px;
+        left: 0;
+        right: 0;
+        z-index: 97;
+    }
+
+}

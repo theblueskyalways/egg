@@ -1,0 +1,391 @@
+.window-wall{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    top: 40px;
+    bottom: 0;
+    right: 0;
+    z-index: 900;
+    display: none;
+}
+.play-list-box{
+    width: 100%;
+    position: absolute;
+    top: 40px;;
+    z-index: 1000;
+    background: radial-gradient(ellipse farthest-side at center top,#283244 0,rgba(21,26,35,.95)100%);
+    padding: 50px 0;
+
+    display: none;
+    transition: 1s;
+}
+.play-list-box.is-select{
+    display: block;
+}
+
+.play-list-box .inner{
+    position: relative;
+    width: 1600px;
+    margin: 0 auto;
+}
+.play-list-box a{
+    display: block;
+}
+.play-list{
+    width: 1600px;
+    margin: 0 auto;
+    text-align: center;
+    display: none;
+
+}
+.play-list.is-select{
+    display: block;
+}
+.match-list{
+    position: relative;
+    left: 0;
+    top: 0;
+    display: none;
+}
+.match-list.is-select{
+    display: block;
+}
+.match-list>li {
+    width: 192px;
+    height: 300px;
+    /*overflow: hidden;*/
+    position: relative;
+    transition: 1s;
+    float: left;
+    color: #fff;
+    padding: 0 10px 20px 10px;
+}
+.match-list-box{
+    width: 192px;
+    height: 104%;
+}
+.match-list-box .img{
+    margin-bottom: -14px;
+}
+.match-list>li:first-child:hover{
+    width: 292px;
+}
+.match-list>li:first-child:hover>.match-logo{
+    width: 100px;
+    opacity: 1;
+}
+.match-list>li:hover .match-list-box{
+    background-color: rgba(255,255,255,.1);
+}
+.match-list>li .text{
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+.match-logo{
+    position: absolute;
+    left: 202px;
+    top: 0;
+    width: 0;
+    transition: 1s;
+    opacity: 0;
+    background-color: #000000;
+}
+.match-logo img{
+    width: 100px;
+    height: 100px;
+}
+.img-prey{
+    width: 210px;
+    height: 100%;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    background: rgba(255,255,255,0);
+}
+.play-list li{
+    float: left;
+    position: relative;
+    height: 180px;
+    width: 210px;
+    padding: 0 10px;
+}
+.play-list li:last-of-type{
+    padding-right: 0;
+}
+.play-list li img{
+    width: 210px;
+    height: 180px;
+}
+.play-list li:hover .img-prey{
+    background: rgba(255,255,255,.2);
+
+
+}
+.play-list a{
+    color: #c8c8c8;
+}
+.header{
+    min-width: 100%;
+    min-height: 100%;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    padding-top: 40px;
+    background-color: #FFFFFF;
+}
+header .inner {
+    display: flex;
+    width: 1800px;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding: 0 0.05%;
+    z-index: 10;
+}
+header{
+    width: 100%;
+    position: absolute;
+    top: 0;
+
+    /*position: relative;*/
+}
+header i {
+    display: inline-block;
+    background: url("../img/index/1%252Ffsbnet%252Ficon-sprite.png");
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+}
+header .blizzard-logo {
+    width: 67px;
+    height: 40px;
+    background: url("../img/index/1%252Ffsbnet%252Ficon-sprite.png");
+    background-position: -15px -74px;
+    border: 1px solid #009ae5;
+    box-sizing: border-box;
+}
+.blizzard-logo:hover {
+    background-position: -15px -118px;
+    border-color: transparent;
+}
+header .main-nav {
+    height: 40px;
+    display: flex;
+    z-index: 99;
+    position: relative;
+    top: 0;
+    width: 100%;
+    background-color: rgba(2,25,72,.3);
+}
+header .left-nav {
+    display: flex;
+    flex: 1;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+.left-nav .play, .left-nav .fight, .login .id-card {
+    background-position: -145px -130px;
+    width: 12px;
+    height: 7px;
+}
+.left-nav>li {
+    padding: 0 10px;
+}
+.left-nav>li.is-select a{
+    color: #fff;
+}
+header .main-nav a {
+    color: #d8dbe1;
+}
+header .main-nav a:hover {
+    color: #ffffff;
+}
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 40px;
+}
+.login li {
+    padding: 0 10px;
+}
+.content-nav.fixed{
+    position: fixed;
+    top:0px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+}
+.content-nav .logo-overwatch{
+    /*background: url("../img/1%252Fassets%252Fimg%252Fnav-logo-sm.png")center no-repeat;*/
+    width: 12%;
+    height: 100%;
+    display: block;
+}
+.content-nav .logo-overwatch img{
+}
+.content-nav{
+    background-color: rgba(40,53,79,.9);
+    position: relative;
+    z-index: 99;
+    margin: 20px 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 98%;
+    transition: .5s;
+
+
+}
+.content-nav .nav-left{
+    display: flex;
+    flex: 1;
+    position: relative;
+
+}
+.content-nav .nav-left a{
+    color: #ced1d7;
+    line-height: 100%;
+
+}
+.content-nav .nav-left>li{
+    width: 100px;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 25px;
+    position: relative;
+    cursor: pointer;
+
+}
+.content-nav .nav-left>li.now:after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 75%;
+    opacity: .2;
+    background: linear-gradient(to bottom,rgba(60,209,255,0) 0,#3cd1ff 100%);
+}
+.content-nav .nav-left .m-has-children:after,.m-has-active:after,.m-has-news:after{
+    content: "";
+    background-image: url('../img/index/1%252Fassets%252Fimg%252Ficons%252Fmenus%252Fcaret-gray.png');
+    width: 12px;
+    height: 7px;
+    display: inline-block;
+    margin: 0 0 2px 8px;
+}
+.content-nav .buy-button{
+    width: 100px;
+    height: 100%;
+    background-color: #f89e35;
+    color: white;
+    border: none;
+}
+.nav-left>li:hover{
+    background-color: rgba(61,73,96,.95);
+}
+.content-nav .nav-left>li.active{
+    background-color: rgba(61,73,96,.95);
+}
+.nav-left li:hover a{
+    color: #fff;
+}
+.m-sub-menu{
+    margin: 0;
+    background-color: rgba(61,73,96,.95);
+    position: absolute;
+    top: 100%;
+    display: none;
+    width: 150px;
+    left: 0;
+}
+.m-sub-menu.m-open{
+    display: block;
+}
+.m-sub-menu li{
+    position: relative;
+}
+.m-highlight{
+    display: block;
+    padding: 15px 0;
+}
+.m-highlight:before{
+    content: '';
+    display: none;
+    position: absolute;
+    left: 5px;
+    width: 5px;
+    height: 50%;
+    background-color: #00a0ea;
+}
+.m-highlight:hover:before{
+    display: block;
+}
+#gotop{
+    width: 40px;
+    height: 30px;
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    background: rgba(255,255,255,.25);
+    color: #000;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 3px;
+    font-size: 12px;
+    z-index: 500;
+    display: block;
+    cursor: pointer
+}
+#popBox{
+    position: absolute;
+    z-index: 99999;
+    display: none;
+    width: 80%;
+    height: 100%;
+}
+.w-light-box .head{
+    height: 5%;
+    padding: 20px 0 ;
+    border-bottom: 1px solid rgba(0,195,255,.1);
+    font-size: 12px;
+}
+.w-light-box .head .title{
+
+    padding-bottom: 20px;
+    color: white;
+    font: normal normal normal 10px "microsoft yahei",Arial,sans-serif;
+    font-size: 28px;
+}
+
+.w-light-box{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: 1px solid rgba(0,195,255,.1);
+    background: rgba(3,12,21,.98);
+}
+#popBox .closeBtn {
+    position: absolute;
+    z-index: 99999;
+    top: 5px;
+    right: 5px;
+    display: block;
+    overflow: hidden;
+    width: 36px;
+    height: 36px;
+    transition: opacity .5s ease 0s;
+    text-indent: -999px;
+    opacity: .8;
+    background: url('../img/index/1%252Fimages%252Fheroes%252Fdetail%252Fexit.3OOEf.png') 0 0 no-repeat;
+    background-size: contain;}

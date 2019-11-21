@@ -1,0 +1,101 @@
+footer{
+    background-color: #333333;
+}
+.footer{
+    width: 1250px;
+    margin: 0 auto;
+    padding: 50px 0;
+
+}
+.footer .icon{
+    display: inline-flex;
+    background: url("../img/index/sprite-24-blue.png");
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 10px;font-size: 14px;
+
+}
+.footer .icon.icon-1{
+    background-position: -98px -4px;
+}
+.footer .icon.icon-2{
+    background-position: -146px -27px;
+}
+.footer .icon.icon-3{
+    background-position: -26px -121px;
+}
+.f-cb .f-cs a{
+    color: #fff;
+    margin-right: 37px;
+    vertical-align: middle;
+    font-size: 14px;
+}
+footer a{
+    text-decoration: none;
+    padding-top: 5px;
+    color: #fff;
+    font-weight: 400;
+}
+.cprt{
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.logo_bz{
+    background: url("../img/index/blizzardbottom.png") no-repeat center;
+    width: 133px;
+    height: 71px;
+    display: inline-block;
+}
+.logo_ne{
+    background: url("../img/index/logo_ne.png") no-repeat center;
+    width: 140px;
+    height: 38px;
+    display: inline-block;
+}
+.logo-bottom{
+    width: 30%;
+    float: left;
+}
+.info{
+    width: 70%;
+    float:right;
+    color:rgba(255,255,255,.5) ;
+}
+.info a{
+    color:#cccccc ;
+    margin: 0 5px;
+}
+.info a:hover{
+    color: #ffffff;
+}
+.Fix{
+    margin-bottom: 10px;
+}
+.Fix li{
+    float: left;
+}
+.tips{
+    margin-top: 10px;
+    text-align: center;
+    color: rgba(255,255,255,.3);
+}
+.integrity{
+    margin-top: 5px;
+}
+#gotop {
+    width: 40px;
+    height: 30px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: rgb(0, 0, 0);
+    line-height: 30px;
+    text-align: center;
+    font-size: 12px;
+    z-index: 501;
+    display: none;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 3px;
+}

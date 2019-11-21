@@ -1,0 +1,70 @@
+*{
+    box-sizing: inherit;
+    background-repeat: no-repeat;
+    vertical-align: inherit;
+    white-space: initial;
+    text-overflow: inherit;
+    text-shadow: inherit;}
+
+h1,.h2,h2{
+    font-family: "microsoft yahei","Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+    font-size: 65px;
+    font-style: italic;
+    font-weight: 400;
+    font-variant: normal;
+    line-height: normal;
+    letter-spacing: .8px;
+}
+.h4{
+    font-style: normal;
+    font-weight: 700;
+    font-variant: normal;
+    line-height: normal;
+    font-size: 25px;
+}
+
+.column{
+    position: relative;
+    z-index: 3;
+    box-sizing: border-box;
+    padding: 0 50px;
+    text-align: center;
+
+}
+.u-limit-width {
+    max-width: 30em;
+}
+.u-invert{
+    color: #f0edf2;
+}
+.u-align-center{
+    text-align: center;
+}
+.u-center-block{
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+.u-font-shadow {
+    text-shadow: 1px 2px 3px rgba(51,51,51,.5);
+}
+.u-font-big{
+    font-size: 24px;
+}
+p{
+    line-height: 1.6;
+    font-size: inherit;
+}
+h6{
+    font-size: 18px;
+}
+h5+p,h6+p{
+    margin-top: 5px;
+}
+p+p{
+    margin-top: 20px;
+}
+p+h5,p+h6{
+    margin-top: 40px;
+}

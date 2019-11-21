@@ -1,0 +1,214 @@
+body{
+    background: url("../img/login/login-background-1920.3f7pb.jpg");
+    line-height: 20px;
+}
+.logo{
+
+    width: 200px;
+    height: 105px;
+    text-indent: -9999px;
+    background: url(../img/login/blizzard-default.1C4OH.png) 0 0;
+    margin: 0 auto;
+    margin-top: 55px;
+    margin-bottom: 40px;
+}
+.login-waper{
+
+   min-width: 290px;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 350px;
+    padding: 0 20px;
+}
+.login{
+    width: 100%;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+}
+label.control-label {
+
+}
+.alert-error{
+    background-color: #360e10;
+    box-shadow: 0 0 0 1px #551e21 inset, 0 5px 10px rgba(0,0,0,0.75);
+    padding: 10px 20px 10px 49px;
+    margin-bottom: 15px;
+    position: relative;
+    font-size: 13px;
+    line-height: 20px;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid #000;
+    display: none;
+}
+.alert-error.false{
+    display: block;
+}
+.alert-error:before{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    line-height: 24px;
+    vertical-align: top;
+    top: 8px;
+    left: 14px;
+    background-image: url("../img/login/sprite-24-red.0PPlX.png");
+    background-position: -24px 0;
+}
+.control-label{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: .075em;
+    display: block;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+}
+.control-group{
+    margin-bottom: 5px;
+}
+input.input-large{
+    margin: 5px 0;
+    padding: 0 10px;
+    font-size: 17px;
+    line-height: 20px;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+#submit{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 6px;
+    padding: 9px 30px;
+    font-size: 17px;
+    line-height: 20px;
+    height: 40px;
+    background-color: #0e86ca;
+    color: #fff;
+    border: 1px solid #10a1de;
+    border-radius: 0;
+    transition: background-color .2s,box-shadow .2s,background-color .2s,border-color .2s,color .2s;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.15) inset;
+    display: block;
+}
+#submit:hover{
+    background-color: #10a1de;
+}
+#submit.down{
+    background-color: #095386;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.3), 10px  10px 10px 1px rgba(255,255,255,.5) inset;;
+}
+.thirdparty-line{
+    font-size: 13px;
+    color: rgba(255,255,255,.3);
+    text-transform: uppercase;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 0 12px;
+    text-align: center;
+}
+.thirdparty-line span{
+    position: relative;
+    display: inline-block;
+}
+.thirdparty-line span:before{
+    width: 500px;
+    content: "";
+    height: 1px;
+    background-color: #fff;
+    background-color: rgba(255,255,255,.1);
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-right: 20px;
+}
+.thirdparty-line span:after{
+    width: 500px;
+    content: "";
+    height: 1px;
+    background-color: #fff;
+    background-color: rgba(255,255,255,.1);
+    position: absolute;
+    top: 50%;
+    margin-left: 20px;
+    left: 100%;
+}
+.btn{
+    background-image: none;
+    background-color: #d60000;
+    color: #fff;
+    border-color: transparent;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 15px;
+
+    padding: 9px 30px;
+    font-size: 17px;
+    line-height: 20px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+#help-links{
+    margin: 10px 0;
+}
+#help-links li{
+    line-height: 20px;
+    margin: 0 0 20px 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+#help-links li a{
+    color: #00aeff;
+    transition: color .2s;
+}
+#footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+#footer .footer-desktop {
+    width: 600px;
+    min-width: 900px;
+    margin: 0 auto;
+    color: #7b7b7b;
+}
+.footer-content {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 30px 0;
+    font-size: 13px;
+    line-height: 20px;
+}
+.grid-container {
+    padding: 10px;
+}
+.nav-client .footer-links {
+    padding: 8px 0 0 30px;
+    text-transform: uppercase;
+}
+.nav-client .footer-links .nav-item {
+    font-size: 13px;
+}
+.nav-client .nav-a {
+    font-weight: 400;
+    font-size: 13px;
+}
+.nav-client .nav-item {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: text-shadow 160ms ease, color 160ms ease;
+}
+.nav-client .footer-content .copyright {
+    padding: 8px 0;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 12px;
+}
+
+
