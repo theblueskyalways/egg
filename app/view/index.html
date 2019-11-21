@@ -272,7 +272,7 @@ function headfx(){
 
                 }
                 clearInterval(time);
-                time = setInterval(move,100);
+                time = setInterval(move,50);
 
             }else {
                 var last = step;
@@ -280,11 +280,11 @@ function headfx(){
                 if (step ==38){
                     if(last==40){
                             step =  40;
-                            time = setInterval(move,100);
+                            time = setInterval(move,50);
                             return;
                         }else if(last==step){
                         step =  38;
-                        time = setInterval(move,100);
+                        time = setInterval(move,50);
                             return
                         }else {
                         headfx();
@@ -298,11 +298,11 @@ function headfx(){
                 }else if (step ==37) {
                     if(last==39){
                         step = 39;
-                        time = setInterval(move,100);
+                        time = setInterval(move,50);
                         return;
                     }if(last==step){
                         step =  37;
-                        time = setInterval(move,100);
+                        time = setInterval(move,50);
                         return;
                     }else {
                         headfx();
@@ -316,11 +316,11 @@ function headfx(){
                 }else if (step ==39) {
                     if (last==37){
                         step = 37;
-                        time = setInterval(move,100);
+                        time = setInterval(move,50);
                         return;
                     }else if (last==step){
                         step = 39;
-                        time = setInterval(move,100);
+                        time = setInterval(move,50);
                         return;
                     }else {
                         headfx();
@@ -334,11 +334,11 @@ function headfx(){
                 }else if (step ==40) {
                     if (last==38){
                         step = 38;
-                        time = setInterval(move,100);
+                        time = setInterval(move,50);
                         return;
                     }else  if(step == last){
                         step = 40;
-                        time = setInterval(move,100);
+                        time = setInterval(move,50);
                         return;
                     }else {
                         headfx();
@@ -351,7 +351,7 @@ function headfx(){
                     }
                 }
                 clearInterval(time);
-                time = setInterval(move,100);
+                time = setInterval(move,50);
             }
 
         }
