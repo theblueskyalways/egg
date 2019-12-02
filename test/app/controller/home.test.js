@@ -18,4 +18,3 @@ describe('test/app/controller/home.test.js', () => {
       .expect(200);
   });
 });
-console.log(1111111111111111111111111);
