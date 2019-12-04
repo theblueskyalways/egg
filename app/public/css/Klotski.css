@@ -1,0 +1,67 @@
+body{
+    background: #de7856;
+}
+.box{
+    width:20%;
+    height:50%;
+    left:50%;
+    top:50%;
+    -webkit-transform:translate(-50%, -50%);
+    -moz-transform:translate(-50%, -50%);
+    transform:translate( -50%, -50%);
+    background:wheat;
+    border-radius: 1%;
+    position:absolute;
+    text-align: center;
+}
+.ibox{
+    position:absolute;
+    background:palevioletred;
+    border-radius: 10px;
+}
+.ibox-1{
+    width:25%;
+    height:20%;
+}
+.ibox-2{
+    width:50%;
+    height:20%;
+    left:25%;
+    top:40%;
+}
+.ibox-3{
+    width:50%;
+    height:40%;
+    left:25%;
+    top:0;
+}
+.box1,.box2,.box3,.box4,.box5{
+    left:0%;
+}
+.box6,.box7,.box8,.box9,.box10{
+    left:75%;
+}
+
+.box1,.box6{
+    top:0;
+}
+.box2,.box7{
+    top:20%;
+}
+.box3 , .box8{
+    top:40%;
+}
+.box4,.box9 ,.box11,.box12{
+    top:60%;
+}
+.box5,.box10{
+    top:80%;
+}
+.box11{
+    left:25%;
+}
+.box12{
+    left:50%;
+}
+
+

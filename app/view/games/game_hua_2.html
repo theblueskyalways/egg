@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/public/css/Klotski.css">
+    <script src="/public/js/jquery-1.11.1.min.js"></script>
+    <title>华容道—三国</title>
+</head>
+<body>
+        <div class="box">
+            <div class="ibox ibox-1 box1">小兵</div>
+            <div class="ibox ibox-1 box2">小兵</div>
+            <div class="ibox ibox-1 box3">小兵</div>
+            <div class="ibox ibox-1 box4">小兵</div>
+            <div class="ibox ibox-1 box5">小兵</div>
+            <div class="ibox ibox-1 box6">小兵</div>
+            <div class="ibox ibox-1 box7">小兵</div>
+            <div class="ibox ibox-1 box8">小兵</div>
+            <div class="ibox ibox-1 box9">小兵</div>
+            <div class="ibox ibox-1 box10">小兵</div>
+            <div class="ibox ibox-1 box11">小兵</div>
+            <div class="ibox ibox-1 box12">小兵</div>
+            <div class="ibox ibox-2">我是关羽</div>
+            <div class="ibox ibox-3">我是曹操</div>
+        </div>
+        <script>
+            //取消鼠标滑过选中的默认行为
+            document.body.onselectstart= document.body.ondrag=function(){
+                return false
+            };
+            var _mBroad = [];
+            function  init()
+            {
+                for (let i = 0; i < 5; i++) {
+                    if(!_mBroad[i]) _mBroad[i] = [];
+                    for (let j = 0; j < 4; j++) {
+                        if(!_mBroad[i][j]) _mBroad[i][j] = [];
+    // centerY centerX 为各个格子的中心点
+    //                     this._mBroad[i][j].centerY = 160*(i + 0.5)
+    //                     this._mBroad[i][j].centerX = 160*(j + 0.5)
+    //value == 0 没占用 value == 1 占用
+                        if ((i == 0&& j ==1)|| (i == 0&& j ==2))  _mBroad[i][j].value = 0;
+                        else _mBroad[i][j].value = 1
+                        console.log(_mBroad[i][j].value);
+                    }
+                }
+            }
+    
+            init()
+    
+            console.log(_mBroad);
+            var ibox = $('.ibox')
+            var isDrop =false;//标记为可移动
+            var m = ''; //储存当前点击元素的body左侧偏移量  offsetLeft
+            var n = ''; //储存当前点击元素的body上侧偏移量  offsetTop
+            var l ,h;
+            var _this=null;//储存当前点击拖动的元素
+            var moveX,moveY;
+            ibox.eq(0)[0].pos=[[0,4]];
+            ibox.eq(1)[0].pos=[[0,3]];
+            ibox.eq(2)[0].pos=[[0,2]];
+            ibox.eq(3)[0].pos=[[0,1]];
+            ibox.eq(4)[0].pos=[[0,0]];
+            ibox.eq(5)[0].pos=[[3,4]];
+            ibox.eq(6)[0].pos=[[3,3]];
+            ibox.eq(7)[0].pos=[[3,2]];
+            ibox.eq(8)[0].pos=[[3,1]];
+            ibox.eq(9)[0].pos=[[3,0]];
+            ibox.eq(10)[0].pos=[[1,1]];
+            ibox.eq(11)[0].pos=[[2,1]];
+            ibox.eq(12)[0].pos=[[1,2],[2,2]];
+            ibox.eq(13)[0].pos=[[1,3],[2,3],[1,4],[2,4]];
+    
+            //点击进行拖拽
+            $('.ibox').on('mousedown',function(e){
+                _this = this;
+                var x = '',// 鼠标点击点距离盒子左侧距离
+                    y='';
+                var e = e || window.event;//要用event这个对象来获取鼠标的位置
+                m = this.offsetLeft;
+                n = this.offsetTop;
+                l = e.clientX;
+                h= e.clientY;
+                x = e.clientX - m;
+                y= e.clientY - n;
+                let isCanTouchMove = true;
+                //移动事件
+                document.onmousemove=function(e){
+                    console.log(_mBroad[1][1].value);
+                    //是否为可移动状态
+                        var e = e || window.event;
+                         moveX = e.clientX - x; //得到距离左边的距离
+                         moveY = e.clientY - y;//得到距离上边的距离
+                        r = Math.abs(e.clientX - l);
+                        b = Math.abs(e.clientY - h);
+                        //判定是否超出界面
+                        var maxX = Number($('.box').width());//x轴可移动最大距离
+                        var maxY = Number($('.box').height());//y轴可移动最大距离
+                        //规定移动范围
+                        //1.不能超过最左侧，上侧，下侧，右侧
+                                //1.1 moveX最小为0，最大为大盒子宽度减去小盒子宽度
+                                //1.2 moveY最小为0，最大为大盒子高度减去小盒子高度
+                        //2.如果碰撞其他元素则不能移动碰到的那个方向  -----------重要判断
+                                //2.1判断移动那个方向是否有碰撞
+                                        //（上下都有碰撞则不能移动left值top值不能变）
+                                //2.2一次只能超一个方向移动一个距离
+                                        //（上或者下有一个方向没有碰撞，没有碰撞的方向就移动一个单位）
+                                        // 没有碰撞需要与moveX和moveY相比较
+                        //3.判断曹操盒子是不是在成功了的那个位置（----要在移动位置完成之后判断-----）
+    
+                         function add_Remove(type,arr) {
+                             for (let i = 0; i < arr.length; i++) {
+                                 let num = arr[i]
+                                 if (type ==1) {
+                                     _mBroad[num[1]][num[0]].value  = 1
+                                 }else {
+                                     _mBroad[num[1]][num[0]].value  = 0
+                                 }
+                                 console.log(_mBroad[num[1]][num[0]].value);
+                             }
+                         }
+                         function ReadyMove(ready,that,arr) {
+                             if(ready==false){
+                                 return
+                             }else {
+                                 that.pos = arr;
+                                 $(that).css({
+                                     "transition":".0.5s ease"
+                                 });
+                                 add_Remove(1, that.pos);
+                                 if(ready=="right"){
+                                     that.style.left=Len + Width + 'px'
+                                 }
+                                 if(ready=="left"){
+                                     that.style.left=Len - Width + 'px'
+                                 }
+                                 if(ready=="bottom"){
+                                     that.style.top=Ten + Height + 'px'
+                                 }
+                                 if(ready=="top"){
+                                     that.style.top=Ten - Height + 'px'
+                                 }
+                             }
+                         }
+    
+                        // r是X轴   b是Y轴
+                        var reg = /[a-zA-Z]/g;
+                        var Len  = Number(($(_this).css("left")).toString().replace(reg,""));
+                        var Ten = Number($(_this).css("top").toString().replace(reg,""));
+                        var Width = Number($(".box1").width());
+                        var Height = Number($(".box1").height());
+                        if(r>=70||b>=70){
+                            $(_this).css({
+                                "transition":"0.5s ease"
+                            });
+                            if (isCanTouchMove == false) return;
+                            isCanTouchMove = false;
+                            let pos = _this.pos;
+                            let ox = null;
+                            let oy = null;
+                            let _value = null;
+                            let isCanMove = false;
+                            let  endPos = [];
+                          if(r>b){
+                              // X轴先动
+                              add_Remove(0, pos);
+                              if(e.clientX - l>0){
+    
+                                      for (let i = 0; i < pos.length; i++) {
+                                          ox = pos[i][0] + 1;
+                                          oy = pos[i][1];
+                                          endPos.push([ox, oy]);
+                                          if (!_mBroad[oy] || !_mBroad[oy][ox]){
+                                              add_Remove(1, _this.pos);
+                                              console.log(_this.pos);
+                                              return
+                                          }
+                                          _value = _mBroad[oy][ox].value;
+                                          if (_value == 0) {
+                                              isCanMove = "right"
+                                          } else {
+                                              isCanMove = false;
+                                              add_Remove(1, _this.pos);
+                                              return
+                                          }
+                                      }
+                                        ReadyMove(isCanMove,_this,endPos)
+    
+                              }else {
+                                      for (let i = 0; i < pos.length; i++) {
+                                          ox = pos[i][0] - 1;
+                                          oy = pos[i][1];
+                                          endPos.push([ox, oy]);
+                                          if (!_mBroad[oy] || !_mBroad[oy][ox]){
+                                              add_Remove(1, _this.pos);
+                                              return
+                                          }
+                                          _value = _mBroad[oy][ox].value;
+                                          if (_value == 0) {
+                                              isCanMove = "left";
+                                              _this.style.left = Len - Width + 'px';
+                                              _this.pos = [[ox, oy]]
+                                          } else {
+                                              isCanMove = false;
+                                              add_Remove(1, _this.pos);
+                                              return
+                                          }
+                                      }
+                                         ReadyMove(isCanMove,_this,endPos)
+                                  }
+                              // }
+                          }else {
+                              // Y轴先动
+                              add_Remove(0, pos);
+                              if(e.clientY - h>0){
+                                      for (let i = 0; i < pos.length; i++) {
+                                          ox = pos[i][0];
+                                          oy = pos[i][1] - 1;
+                                          endPos.push([ox, oy]);
+                                          if (!_mBroad[oy] || !_mBroad[oy][ox]){
+                                              add_Remove(1, _this.pos);
+                                              return
+                                          }
+                                          _value = _mBroad[oy][ox].value;
+                                          if (_value == 0) {
+                                              isCanMove = "bottom"
+    
+                                          } else {
+                                              isCanMove = false;
+                                              add_Remove(1, _this.pos);
+                                              return
+                                          }
+    
+                                      }
+                                  ReadyMove(isCanMove,_this,endPos)
+                              }else {
+                                      for (let i = 0; i < pos.length; i++) {
+                                          ox = pos[i][0];
+                                          oy = pos[i][1] + 1;
+                                          endPos.push([ox, oy]);
+                                          if (!_mBroad[oy] || !_mBroad[oy][ox]){
+                                              add_Remove(1, _this.pos);
+                                              return
+                                          }
+                                          _value = _mBroad[oy][ox].value;
+                                          if (_value == 0) {
+                                              isCanMove = "top"
+    
+                                          } else {
+                                              isCanMove = false;
+                                              add_Remove(1, _this.pos);
+                                              return
+    
+                                          }
+                                      }
+                                  ReadyMove(isCanMove,_this,endPos)
+                                  }
+                              }
+                            l = e.clientX;
+                            h= e.clientY;
+                        }
+                };
+                document.onmouseup=function(){
+                    isCanTouchMove = true;
+                    document.onmousemove = document.onmouseup = null;
+                };
+                return false;
+            });
+    
+            //判断元素是否碰撞
+            // function duang(obj1, obj2) {
+            //
+            //     var pos1 = obj1.getBoundingClientRect();
+            //     if (obj2) {
+            //         var pos2 = obj2.getBoundingClientRect();
+            //         if (pos1.right < pos2.left || pos1.bottom < pos2.top || pos1.left > pos2.right || pos1.top > pos2.bottom) {
+            //             return true;
+            //         } else {
+            //             console.log(123)
+            //             return false;
+            //         }
+            //     }
+            // }
+    
+        </script>
+    </body>
+</html>
