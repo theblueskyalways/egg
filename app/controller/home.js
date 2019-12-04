@@ -5,11 +5,26 @@ const Controller = require('egg').Controller;
 class HomeController extends Controller {
   async index() {
     const { ctx } = this;
-    let title = "我是首页"; //向模板传入数据
-    await ctx.render('index',{
-      title: title
+    const title = '我是首页'; // 向模板传入数据
+    await ctx.render('index', {
+      title,
     });
-    // ctx.body = 'hi,欢迎访问 taining.chen 的个人网站。该网站正在紧张建设中。该主人可能去火星探险还未归来，所以在这段时间可以去访问一下www.bilibili.com';
+  }
+
+  async hero() {
+    const { ctx } = this;
+    const title = '我是英雄页面'; // 向模板传入数据
+    await ctx.render('hero/hero', {
+      title,
+    });
+  }
+
+  async snake() {
+    const { ctx } = this;
+    const title = '我是贪吃蛇游戏页面'; // 向模板传入数据
+    await ctx.render('snake', {
+      title,
+    });
   }
 }
 

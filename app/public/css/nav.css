@@ -228,6 +228,8 @@ header .main-nav a:hover {
     display: block;
 }
 .content-nav .logo-overwatch img{
+  width: 100%;
+  height: 100%;
 }
 .content-nav{
     background-color: rgba(40,53,79,.9);
