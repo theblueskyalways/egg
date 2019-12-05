@@ -264,6 +264,15 @@
                 };
                 document.onmouseup=function(){
                     isCanTouchMove = true;
+                   if($(".ibox-3")[0].pos[0][0]==1&&$(".ibox-3")[0].pos[0][1]==0){
+                       setTimeout(function(){
+                        $(".ibox-3").css("top","470px")
+                        alert("小伙子你过关了！")
+                       },501)
+                  
+                   }
+                    console.log( $(".ibox-3")[0].pos);
+                    
                     document.onmousemove = document.onmouseup = null;
                 };
                 return false;
