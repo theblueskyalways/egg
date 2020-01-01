@@ -13,7 +13,13 @@ class HomeController extends Controller {
       title,
     });
   }
-
+  async birthday() {
+    const { ctx } = this;
+    const title = '我是首页'; // 向模板传入数据
+    await ctx.render('birthday', {
+      title,
+    });
+  }
   async hero() {
     const { ctx } = this;
     const title = '我是英雄页面'; // 向模板传入数据
