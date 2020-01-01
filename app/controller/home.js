@@ -6,6 +6,9 @@ class HomeController extends Controller {
   async index() {
     const { ctx } = this;
     const title = '我是首页'; // 向模板传入数据
+    const sql = 'select * from user';
+    const result = await ctx.app.mysql.query(sql);
+    console.log(result);
     await ctx.render('index', {
       title,
     });
