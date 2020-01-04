@@ -35,6 +35,14 @@ class HomeController extends Controller {
       title,
     });
   }
+
+  async happyNewYear() {
+    const { ctx } = this;
+    const title = '我是许愿树'; // 向模板传入数据
+    await ctx.render('happyNewYear', {
+      title,
+    });
+  }
 }
 
 module.exports = HomeController;
