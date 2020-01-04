@@ -12,4 +12,6 @@ module.exports = app => {
   router.get('/snake', controller.home.snake);
   router.post('/user/login', controller.user.login);
   router.post('/user/register', controller.user.register);
+  router.post('/user/addWish', controller.user.addWish);
+  router.get('/user/chek', controller.user.checkWishs);
 };
