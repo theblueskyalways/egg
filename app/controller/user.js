@@ -32,17 +32,20 @@ class HomeController extends Controller {
       this.success(result);
     } else {
       const wishList = [];
+      const thisWish = result[Math.floor(Math.random() * result.length)];
+      wishList.push(thisWish);
       while (wishList.length < 10) {
         const thisWish = result[Math.floor(Math.random() * result.length)];
+        let flag = true;
         wishList.forEach(v => {
-          if (v.id !== thisWish.id) {
-            wishList.push(thisWish);
+          if (v.id === thisWish.id) {
+            flag = false;
           }
         });
+        if (flag)wishList.push(thisWish);
       }
       this.success(wishList);
     }
-    this.fail();
   }
 
   // 用户添加愿望
@@ -52,8 +55,8 @@ class HomeController extends Controller {
     console.log(userId);
     const result = await ctx.app.mysql.insert('wish', { owner: userId, content });
     console.log(result);
-    if (result.effectRows > 0) this.success();
-    // this.fail();
+    if (result.affectedRows > 0) return this.success();
+    this.fail();
   }
 
 }
