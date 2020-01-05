@@ -132,7 +132,7 @@ body{
     bottom: 4%;
 }
 .tree{
-  position: relative;
+  position: absolute;
  
 }
 @keyframes move{
@@ -152,7 +152,7 @@ body{
   width: 60%;
   height: 30%;
   left: 25%;
-  bottom: -41%;
+  bottom: 29%;
    animation: move 3s infinite;
    animation-delay: .8s;
 }
@@ -160,7 +160,7 @@ body{
   width: 53%;
   height: 30%;
   left: 29%;
-  bottom: -3%;
+  bottom: 37%;
    animation: move 3s infinite;
    animation-delay: .5s;
 }
@@ -169,7 +169,7 @@ body{
   width: 45%;
   height: 30%;
   left: 33%;
-  bottom: 45%;
+  bottom: 55%;
    animation: move 3s infinite;
   
 }
