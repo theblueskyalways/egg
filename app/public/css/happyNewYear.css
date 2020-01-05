@@ -9,10 +9,13 @@
 @media screen and (min-width:400px){
     body,html{font-size:18px}
 }
+body,html{
+  height: 100%;
+}
 
 #content{
-    width: 500px;
-    height: 500px;
+    width: 100%;
+    height:100%;
     background-image: url(/public/img/background.png);
     background-size: 100% 100%;
 }
