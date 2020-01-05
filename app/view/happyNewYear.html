@@ -37,7 +37,7 @@
 </body>
 <script>
     new Vue({
-        el: ".star",
+        el: "#content",
         data: {
             star: [
                 { left: "15%", top: "10%" ,width:"30%" },
@@ -54,8 +54,8 @@
         methods: {
 
             changeStar() { 
+                console.log(1111)
                 console.log(this.$refs);
-                
                this.$el.style.left=this.$data.star[0].left;
                 
             }
