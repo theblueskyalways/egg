@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>新年许愿树</title>
-  
+
     <!-- 引入Vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- 引入样式 -->
@@ -15,9 +16,53 @@
     <link rel="stylesheet" href="/public/css/happyNewYear.css">
     <script type="text/javascript" src="/public/js/happyNewYear.js"></script>
 </head>
+
 <body>
     <div id="content">
-
+        <img class="tree_bottom" src="/public/img/tree-04.png" alt="">
+        <img class="tree_box" src="/public/img/box.png" alt="">
+        <div class="tree tree_3">
+            <img src="/public/img/tree-03.png" alt="">
+            <img class="star" ref="star" src="/public/img/star.png" alt="">
+        </div>
+        <div class="tree tree_2">
+            <img src="/public/img/tree-02.png" alt="">
+            <img class="star" ref="star1" src="/public/img/star.png" alt="">
+        </div>
+        <div class="tree tree_1">
+            <img src="/public/img/tree-01.png" alt="">
+            <img class="star" ref="star2"  src="/public/img/star.png" alt="">
+        </div>
     </div>
 </body>
+<script>
+    new Vue({
+        el: ".star",
+        data: {
+            star: [
+                { left: "15%", top: "10%" ,width:"30%" },
+                { left: "15%", top: "10%" },
+                { left: "15%", top: "10%" },
+            ]
+        },
+        mounted() {
+
+            this.changeStar()
+
+        },
+
+        methods: {
+
+            changeStar() { 
+                console.log(this.$refs);
+                
+               this.$el.style.left=this.$data.star[0].left;
+                
+            }
+
+        }
+    })
+
+</script>
+
 </html>
