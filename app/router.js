@@ -14,4 +14,5 @@ module.exports = app => {
   router.post('/user/register', controller.user.register);
   router.post('/user/addWish', controller.user.addWish);
   router.get('/user/chek', controller.user.checkWishs);
+  router.get('/happyNewYear', controller.home.happyNewYear);
 };
