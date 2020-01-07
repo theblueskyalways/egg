@@ -15,6 +15,8 @@
     <script src="//unpkg.com/iview@1.0.1/dist/iview.min.js"></script>
     <link rel="stylesheet" href="/public/css/happyNewYear.css">
     <script type="text/javascript" src="/public/js/happyNewYear.js"></script>
+
+
 </head>
 
 <body>
@@ -23,30 +25,133 @@
         <img class="tree_box" src="/public/img/box.png" alt="">
         <div class="tree tree_3">
             <img src="/public/img/tree-03.png" alt="">
-           
+
         </div>
         <div class="tree tree_2">
             <img src="/public/img/tree-02.png" alt="">
-          
+
         </div>
         <div class="tree tree_1">
             <img src="/public/img/tree-01.png" alt="">
-            <img class="star"    v-for="(item,index) in star"  ref="index" src="/public/img/star.png" alt="">
-          
+            <img class="star" v-for="(item,index) in star" ref="index" src="/public/img/star.png" alt="">
         </div>
-    </div>  
+
+
+        <div class="">
+            <Button @click="modal = true" style="font-size:14px;background: #393D49;color: #fff;">登录 注册</Button>
+            <Modal v-model="modal" width="400">
+                <p slot="header" style="color:#f60;text-align:center"></p>
+                <Row :gutter="32">
+                    <Col span="24" class="demo-tabs-style1">
+                    <Tabs>
+                        <TabPane label="登录">
+                            <Form ref="Login" :model="Login" :rules="ruleInline" class="signin" style="margin-top:30px">
+                                <FormItem prop="mobile">
+                                    <Input type="text" v-model="Login.mobile" placeholder="输入手机号" @focus="errorUnshow">
+                                    <Icon type="ios-person-outline" slot="prepend"></Icon>
+                                    </Input>
+                                    <p class="error-text" v-show="Login.error.mobile">{{Login.error.mobil}}</p>
+                                </FormItem>
+                                <FormItem prop="password">
+                                    <Input type="password" v-model="Login.password" placeholder="输入密码"
+                                        @focus="errorUnshow">
+                                    <Icon type="ios-locked-outline" slot="prepend"></Icon>
+                                    </Input>
+                                    <p class="error-text" v-show="Login.error.password">{{Login.error.password}}</p>
+                                </FormItem>
+                                <FormItem style="text-align:center">
+                                    <p class="error-text" v-show="Login.error.all">{{Login.error.all}}</p>
+                                    <Button type="primary" @click="loginSubmit('Login')"
+                                        style="width:60%;font-size:16px">登录</Button>
+                                </FormItem>
+                            </Form>
+
+                            <ul class="form other-form flexa">
+                                <li>
+                            </ul>
+                        </TabPane>
+                        <TabPane label="注册">
+                            <Form ref="Register" :model="Register" :rules="ruleInline" class="signup"
+                                style="margin-top:30px">
+                                <FormItem prop="mobile">
+                                    <Input type="text" v-model="Register.mobile" placeholder="输入手机号"
+                                        style="text-align:center">
+                                    <Icon type="ios-person-outline" slot="prepend"></Icon>
+                                    </Input>
+                                    <p class="error-text marb8" v-show="Register.error.mobile">{{Register.error.mobile}}
+                                    </p>
+                                </FormItem>
+                                <FormItem prop="code">
+                                    <div class="flex">
+                                        <Input type="text" v-model="Register.code" placeholder="输入获取的验证码"
+                                            style="text-align:center"></Input>
+
+                                        <Button type="ghost" @click="seedMessage"
+                                            style="background:#ff6060;color:#fff"></Button>
+                                    </div>
+                                    <p class="error-text marb8" v-show="Register.error.code">{{Register.error.code}}</p>
+                                </FormItem>
+                                <FormItem prop="password">
+                                    <Input type="password" v-model="Register.password" placeholder="输入密码">
+                                    <Icon type="ios-locked-outline" slot="prepend"></Icon>
+                                    </Input>
+                                    <p class="error-text marb8" v-show="Register.error.password">
+                                        {{Register.error.password}}</p>
+                                </FormItem>
+                                <FormItem style="text-align:center">
+                                    <p class="error-text marb8" v-show="Register.error.error">{{Register.error.error}}
+                                    </p>
+                                    <Button type="primary" @click="registerSubmit('Register')"
+                                        style="width:60%;font-size:16px">注册</Button>
+                                </FormItem>
+                            </Form>
+                        </TabPane>
+                    </Tabs>
+                    </Col>
+                </Row>
+                <div slot="footer" style="text-align:center">
+                    <p></p>
+                </div>
+            </Modal>
+        </div>
+    </div>
 </body>
 <script>
     new Vue({
         el: "#content",
-        data: {
-            star: [
-                { left: "6%", top: "64%"  },
-                { left: "11%", top: "105%" },
-                { left: "52%", top: "90%"  },
-                { left: "74%", top: "144%" },    
-                { left: "12%", top: "154%" },
-            ],
+        data() {
+            return {
+                star: [
+                    { left: "6%", top: "64%" },
+                    { left: "11%", top: "105%" },
+                    { left: "52%", top: "90%" },
+                    { left: "74%", top: "144%" },
+                    { left: "12%", top: "154%" },
+                ],
+                modal: false,
+                Login: {
+                    mobile: "",
+                    password: "",
+                    error: {
+                        mobile: "",
+                        password: "",
+                        all: "",
+                        text: ""
+                    }
+                },
+                Register: {
+                    mobile: "",
+                    code: "",
+                    password: "",
+                    error: {
+                        code: "",
+                        password: "",
+                        error: "",
+                        mobile: "",
+                    }
+                }
+            }
+
         },
         mounted() {
 
@@ -56,15 +161,39 @@
 
         methods: {
 
-            changeStar() { 
+            changeStar() {
                 console.log(1111)
                 console.log(this.$refs.index);
                 for (const key in this.$refs.index) {
-                    this.$refs.index[key].style.left = this.$data.star[key].left
-                    this.$refs.index[key].style.top = this.$data.star[key].top
+                    this.$refs.index[key].style.left = this.star[key].left
+                    this.$refs.index[key].style.top = this.star[key].top
                 }
-                
-            }
+
+            },
+            loginSubmit() {
+                var user = this.user;
+                if (user.username === '' || user.password === '') {
+                    return false;
+                }
+                this.$axios.post('/login', this.user).then((response) => {
+                    var status = response.data;
+                    if (status === 'success') {
+                        //路由跳转
+                        this.$router.push('/');
+                    } else {
+                        alert(response.data);
+                    }
+                    console.log(response);
+                }).catch((error) => {
+                    console.log(response);
+                });
+
+
+            },
+            ruleInline() { },
+            errorUnshow() { },
+            registerSubmit() { },
+            seedMessage() { }
 
         }
     })
