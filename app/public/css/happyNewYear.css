@@ -1,0 +1,137 @@
+
+
+/* 消除高亮 */
+input{
+   outline: none;
+   border-radius: 0;
+}
+
+/* 统一对齐方式，避免间隙, 限定最大宽度，避免溢出 */
+/* img{
+   vertical-align: bottom;
+   max-width: 100%;
+} */
+
+/* 方便具体页面设置不同的背景色 */
+html, body, #app, #login{
+   min-height: 100%;
+   padding: 1px 0; 
+   margin: -1px 0; 
+}
+ /* body{
+ /* 解决 Ios 300毫秒延迟 */
+ /* touch-action: manipulation;
+}  */
+
+
+
+/* @media screen and (max-width:321px){
+    body,html{font-size:15px}
+}
+
+@media screen and (min-width:321px) and (max-width:400px){
+    body,html{font-size:16px}
+}
+
+@media screen and (min-width:400px){
+    body,html{font-size:18px}
+} */
+/* body,html{
+  height: 100%;
+} */
+
+#app{
+    width: 100%;
+    height:100%;
+    background-image: url(/public/img/background.png);
+    background-size: 100% 100%;
+}
+
+.tree_bottom{
+  width: 67%;
+  position: absolute;
+  left: 21%;
+  bottom: 11%;
+
+}
+.tree_box{
+  width: 78%;
+    position: absolute;
+    left: 15%;
+    bottom: 4%;
+}
+.tree{
+  position: absolute;
+ 
+}
+@keyframes move{
+ 0%{ transform: translate(0,0);}
+50%{transform: translate(0,15px);}
+100%{transform: translate(0,0px);}
+ 
+}
+.tree img{
+  width: 100%;
+}
+.tree .star{
+  width: 30%;
+  position: absolute;
+  display: block;
+  z-index: 10;
+}
+.tree_3{
+  width: 60%;
+  height: 30%;
+  left: 25%;
+  bottom: 29%;
+   animation: move 3s infinite;
+   animation-delay: .8s;
+}
+.tree_2{
+  width: 53%;
+  height: 30%;
+  left: 29%;
+  bottom: 37%;
+   animation: move 3s infinite;
+   animation-delay: .5s;
+}
+
+.tree_1{
+  width: 45%;
+  height: 30%;
+  left: 33%;
+  bottom: 55%;
+   animation: move 3s infinite;
+  
+}
+
+
+.tree .star:before {
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  -webkit-box-shadow:0 0 30px blue inset;
+  -moz-box-shadow:0 0 30px blue inset;
+  -o-box-shadow:0 0 30px blue inset;
+}
+@-webkit-keyframes searchLights {
+  0% { left: -100px; top: 0; }
+  to { left: 120px; top: 100px; }
+  }
+  @-o-keyframes searchLights {
+  0% { left: -100px; top: 0; }
+  to { left: 120px; top: 100px; }
+  }
+  @-moz-keyframes searchLights {
+  0% { left: -100px; top: 0; }
+  to { left: 120px; top: 100px; }
+  }
+  @keyframes searchLights {
+  0% { left: -100px; top: 0; }
+  to { left: 120px; top: 100px; }
+  }
+
+
+
+ 

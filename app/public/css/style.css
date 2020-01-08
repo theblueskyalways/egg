@@ -1,0 +1,117 @@
+flex-box, body , #app{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  height: 100vh;
+  /* background-color: #395284;
+  padding-top: 5vh; */
+}
+body .base {
+  background-color: white;
+  border-radius: 10px;
+  width: 90%;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  -webkit-box-shadow: 0 10px 6px -6px #2a3c60;
+  -moz-box-shadow: 0 10px 6px -6px #2a3c60;
+  box-shadow: 0 10px 6px -6px #2a3c60;
+}
+body .base .btn {
+  text-transform: uppercase;
+  font-size: 1.5vw;
+  font-family: "Poppins", sans-serif;
+  margin-top: 20px;
+}
+body .base h2 {
+  font-size: 5vw;
+  font-family: "Poppins", sans-serif;
+}
+body .base h6 {
+  font-size: 2vw;
+  margin-top: 1vh;
+  margin-bottom: 3vh;
+  font-family: "PT Serif", serif;
+}
+body .base .aim {
+  padding: 5%;
+  background-color: #ffc554;
+  height: 100%;
+  width: 40%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  transition: all 800ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+body .base .aim h2, body .base .aim h6 {
+  color: white;
+}
+body .base .aim .btn {
+  border: 1px solid white;
+  background-color: #ffc554;
+  color: white;
+}
+body .base .aim.in {
+  left: 60%;
+  transition: all 800ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+body .base .formArea {
+  padding: 5%;
+  background-color: white;
+  height: 100%;
+  width: 60%;
+  position: absolute;
+  top: 0;
+  left: 40%;
+  transition: all 800ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+body .base .formArea .btn {
+  background-color: #395284;
+  color: white;
+}
+body .base .formArea .btn:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+body .base .formArea input {
+  font-size: 1.5vw;
+  font-family: "PT Serif", serif;
+  background-color: white;
+  color: #395284;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #395284;
+}
+body .base .formArea input:focus {
+  outline: none;
+  box-shadow: none;
+}
+body .base .formArea input::placeholder {
+  color: #395284;
+}
+body .base .formArea h2, body .base .formArea h6 {
+  color: #395284;
+}
+body .base .formArea.in {
+  transition: all 800ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  left: 0%;
+}
+.x{
+  position: relative;
+  left: 94%;
+  top: 1%;
+  font-size: 4vw;
+  z-index: 9;
+}
