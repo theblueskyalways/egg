@@ -3,19 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>新年许愿树</title>
-    <!-- 引入Vue -->
-    <!-- 引入样式 -->
-    <!-- 引入组件库 -->
-    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
-    <script type="text/javascript" src="http://v1.vuejs.org/js/vue.min.js"></script>
-    <script type="text/javascript" src="http://unpkg.com/iview@1.0.1/dist/iview.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="/public/css/happyNewYear.css">
     <script type="text/javascript" src="/public/js/happyNewYear.js"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
@@ -35,81 +30,16 @@
         <div class="">
             <Button @click="modalvisible = true" style="font-size:14px;background: #393D49;color: #fff;">登录 注册</Button>
         </div>
-        <Modal :visible.sync="modalvisible" width="400">
-                <p slot="header" style="color:#f60;text-align:center">大大是多少</p>
-                <Row>
-                    <Col span="24" class="demo-tabs-style1">
-                    <Tabs value="login">
-                        <TabPane name='login' label="登录">
-                            <Form ref="Login" :model="Login" :rules="ruleInline" class="signin" style="margin-top:30px">
-                                <FormItem prop="mobile">
-                                    <Input type="text" v-model="Login.mobile" placeholder="输入手机号" @focus="errorUnshow">
-                                    <Icon type="ios-person-outline" slot="prepend"></Icon>
-                                    </Input>
-                                    <p class="error-text" v-show="Login.error.mobile">{{Login.error.mobil}}</p>
-                                </FormItem>
-                                <FormItem prop="password">
-                                    <Input type="password" v-model="Login.password" placeholder="输入密码"
-                                        @focus="errorUnshow">
-                                    <Icon type="ios-locked-outline" slot="prepend"></Icon>
-                                    </Input>
-                                    <p class="error-text" v-show="Login.error.password">{{Login.error.password}}</p>
-                                </FormItem>
-                                <FormItem style="text-align:center">
-                                    <p class="error-text" v-show="Login.error.all">{{Login.error.all}}</p>
-                                    <Button type="primary" @click="loginSubmit('Login')"
-                                        style="width:60%;font-size:16px">登录</Button>
-                                </FormItem>
-                            </Form>
-                            <ul class="form other-form flexa">
-                                <li>
-                            </ul>
-                        </TabPane>
-                        <TabPane name='register' label="注册">
-                            <Form ref="Register" :model="Register" :rules="ruleInline" class="signup"
-                                style="margin-top:30px">
-                                <FormItem prop="mobile">
-                                    <Input type="text" v-model="Register.mobile" placeholder="输入手机号"
-                                        style="text-align:center">
-                                    <Icon type="ios-person-outline" slot="prepend"></Icon>
-                                    </Input>
-                                    <p class="error-text marb8" v-show="Register.error.mobile">{{Register.error.mobile}}
-                                    </p>
-                                </FormItem>
-                                <FormItem prop="code">
-                                    <div class="flex">
-                                        <Input type="text" v-model="Register.code" placeholder="输入获取的验证码"
-                                            style="text-align:center"></Input>
-                                        <Button type="ghost" @click="seedMessage"
-                                            style="background:#ff6060;color:#fff"></Button>
-                                    </div>
-                                    <p class="error-text marb8" v-show="Register.error.code">{{Register.error.code}}</p>
-                                </FormItem>
-                                <FormItem prop="password">
-                                    <Input type="password" v-model="Register.password" placeholder="输入密码">
-                                    <Icon type="ios-locked-outline" slot="prepend"></Icon>
-                                    </Input>
-                                    <p class="error-text marb8" v-show="Register.error.password">
-                                        {{Register.error.password}}</p>
-                                </FormItem>
-                                <FormItem style="text-align:center">
-                                    <p class="error-text marb8" v-show="Register.error.error">{{Register.error.error}}
-                                    </p>
-                                    <Button type="primary" @click="registerSubmit('Register')"
-                                        style="width:60%;font-size:16px">注册</Button>
-                                </FormItem>
-                            </Form>
-                        </TabPane>
-                    </Tabs>
-                    </Col>
-                </Row>
-                <div slot="footer" style="text-align:center">
-                    <p></p>
-                </div>
-            </Modal>
+    </div>
+    <div id="example">
+        djaddasd
     </div>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 <script>
+    $('#example').popover('show')
     new Vue({
         el: "#content",
         data() {
@@ -149,13 +79,14 @@
         mounted() {
 
             this.changeStar()
-
+            this.$axios.get('http://http://172.81.214.190/:7001/user/check').then(res=>{
+                console.log(res)
+            })
         },
 
         methods: {
 
             changeStar() {
-                console.log(1111)
                 console.log(this.$refs.index);
                 for (const key in this.$refs.index) {
                     this.$refs.index[key].style.left = this.star[key].left
@@ -168,7 +99,7 @@
                 if (user.username === '' || user.password === '') {
                     return false;
                 }
-                this.$axios.post('/login', this.user).then((response) => {
+                this.$axios.post('http://http://172.81.214.190/:7001/login', this.user).then((response) => {
                     var status = response.data;
                     if (status === 'success') {
                         //路由跳转
