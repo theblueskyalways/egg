@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/public/css/happyNewYear.css">
     <link rel="stylesheet" href="/public/css/style.css">
     <!-- <script type="text/javascript" src="/public/js/happyNewYear.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
 
@@ -121,7 +122,9 @@
 
         },
         mounted() {
-
+            axios.get('http://172.81.214.190:7001/user/chek').then(res=>{
+                console.log(res)
+            })
             this.changeStar()
 
         },
