@@ -3,45 +3,88 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>新年许愿树</title>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 引入Vue -->
+    <!-- 引入样式 -->
+    <!-- 引入组件库 -->
+    <link rel='stylesheet' href='/public/css/bootstrap.min.css'>
+   
     <link rel="stylesheet" href="/public/css/happyNewYear.css">
-    <script type="text/javascript" src="/public/js/happyNewYear.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <!-- <script type="text/javascript" src="/public/js/happyNewYear.js"></script> -->
+
+
+
 </head>
 
 <body>
-    <div id="content">
+    <div id="app">
         <img class="tree_bottom" src="/public/img/tree-04.png" alt="">
-        <img class="tree_box" src="/public/img/box.png" alt="">
+        <img class="tree_box" @click='show()' src="/public/img/box.png" alt="">
         <div class="tree tree_3">
             <img src="/public/img/tree-03.png" alt="">
         </div>
         <div class="tree tree_2">
             <img src="/public/img/tree-02.png" alt="">
         </div>
-        <div class="tree tree_1">
+        <div class="tree tree_1" >
             <img src="/public/img/tree-01.png" alt="">
             <img class="star" v-for="(item,index) in star" ref="index" src="/public/img/star.png" alt="">
         </div>
-        <div class="">
-            <Button @click="modalvisible = true" style="font-size:14px;background: #393D49;color: #fff;">登录 注册</Button>
+        <div id="login" class="base" v-show="loginShow">
+            <p class="x" @click='hide()'>x</p >
+            <div v-if="signUp">
+                <div class="aim">   
+                    <h2>Hello 亲!</h2>
+                    <h6>需要注册请点击下方！</h6>
+                    <button @click="signUp = !signUp" class="btn ">注册</button>
+                </div>
+                <div class="formArea">
+                    <h2>请您进行登录</h2>
+                    <h6>登录完成即可许愿</h6>
+    
+                    <div class="form-group">
+                        <input type="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="电话">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                    </div>
+                    <button class="btn">登录</button>
+    
+                </div>
+            </div>
+    
+            <div v-else>
+                <div class="aim in">
+                    <h2>欢迎回来!</h2>
+                    <h6>注册完成请点击我</h6>
+                    <button @click="signUp = !signUp" class="btn">登录</button>
+                </div>
+                <div class="formArea in">
+                    <h2>注册您的信息</h2>
+                    <h6>注册完成即可登录</h6>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="姓名">
+                    </div>
+                    <div class="form-group">
+                        <input type="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="电话">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                    </div>
+                    <button class="btn">注册</button>
+                </div>
+    
+            </div>
         </div>
     </div>
-    <div id="example">
-        djaddasd
-    </div>
+    <script type="text/javascript" src="/public/js/vue.js"></script>
 </body>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 <script>
-    $('#example').popover('show')
-    new Vue({
-        el: "#content",
+   var app =  new Vue({
+        el: "#app",
         data() {
             return {
                 star: [
@@ -51,7 +94,8 @@
                     { left: "74%", top: "144%" },
                     { left: "12%", top: "154%" },
                 ],
-                modalvisible: true,
+                signUp: true,
+                loginShow:false,
                 Login: {
                     mobile: "",
                     password: "",
@@ -79,14 +123,18 @@
         mounted() {
 
             this.changeStar()
-            this.$axios.get('http://http://172.81.214.190/:7001/user/check').then(res=>{
-                console.log(res)
-            })
+
         },
 
         methods: {
-
+            show(){
+                this.loginShow = true
+            },
+            hide(){
+                this.loginShow = false
+            },
             changeStar() {
+                console.log(1111)
                 console.log(this.$refs.index);
                 for (const key in this.$refs.index) {
                     this.$refs.index[key].style.left = this.star[key].left
@@ -99,7 +147,7 @@
                 if (user.username === '' || user.password === '') {
                     return false;
                 }
-                this.$axios.post('http://http://172.81.214.190/:7001/login', this.user).then((response) => {
+                this.$axios.post('/login', this.user).then((response) => {
                     var status = response.data;
                     if (status === 'success') {
                         //路由跳转
