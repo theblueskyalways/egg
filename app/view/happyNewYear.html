@@ -9,109 +9,82 @@
     <!-- 引入Vue -->
     <!-- 引入样式 -->
     <!-- 引入组件库 -->
-    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
-    <script type="text/javascript" src="http://v1.vuejs.org/js/vue.min.js"></script>
-    <script type="text/javascript" src="http://unpkg.com/iview@1.0.1/dist/iview.min.js"></script>
+    <link rel='stylesheet' href='/public/css/bootstrap.min.css'>
+   
     <link rel="stylesheet" href="/public/css/happyNewYear.css">
-    <script type="text/javascript" src="/public/js/happyNewYear.js"></script>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <!-- <script type="text/javascript" src="/public/js/happyNewYear.js"></script> -->
+
 
 
 </head>
 
 <body>
-    <div id="content">
+    <div id="app">
         <img class="tree_bottom" src="/public/img/tree-04.png" alt="">
-        <img class="tree_box" src="/public/img/box.png" alt="">
+        <img class="tree_box" @click='show()' src="/public/img/box.png" alt="">
         <div class="tree tree_3">
             <img src="/public/img/tree-03.png" alt="">
         </div>
         <div class="tree tree_2">
             <img src="/public/img/tree-02.png" alt="">
         </div>
-        <div class="tree tree_1">
+        <div class="tree tree_1" >
             <img src="/public/img/tree-01.png" alt="">
             <img class="star" v-for="(item,index) in star" ref="index" src="/public/img/star.png" alt="">
         </div>
-        <div class="">
-            <Button @click="modalvisible = true" style="font-size:14px;background: #393D49;color: #fff;">登录 注册</Button>
-        </div>
-        <Modal :visible.sync="modalvisible" width="400">
-                <p slot="header" style="color:#f60;text-align:center">大大是多少</p>
-                <Row>
-                    <Col span="24" class="demo-tabs-style1">
-                    <Tabs value="login">
-                        <TabPane name='login' label="登录">
-                            <Form ref="Login" :model="Login" :rules="ruleInline" class="signin" style="margin-top:30px">
-                                <FormItem prop="mobile">
-                                    <Input type="text" v-model="Login.mobile" placeholder="输入手机号" @focus="errorUnshow">
-                                    <Icon type="ios-person-outline" slot="prepend"></Icon>
-                                    </Input>
-                                    <p class="error-text" v-show="Login.error.mobile">{{Login.error.mobil}}</p>
-                                </FormItem>
-                                <FormItem prop="password">
-                                    <Input type="password" v-model="Login.password" placeholder="输入密码"
-                                        @focus="errorUnshow">
-                                    <Icon type="ios-locked-outline" slot="prepend"></Icon>
-                                    </Input>
-                                    <p class="error-text" v-show="Login.error.password">{{Login.error.password}}</p>
-                                </FormItem>
-                                <FormItem style="text-align:center">
-                                    <p class="error-text" v-show="Login.error.all">{{Login.error.all}}</p>
-                                    <Button type="primary" @click="loginSubmit('Login')"
-                                        style="width:60%;font-size:16px">登录</Button>
-                                </FormItem>
-                            </Form>
-                            <ul class="form other-form flexa">
-                                <li>
-                            </ul>
-                        </TabPane>
-                        <TabPane name='register' label="注册">
-                            <Form ref="Register" :model="Register" :rules="ruleInline" class="signup"
-                                style="margin-top:30px">
-                                <FormItem prop="mobile">
-                                    <Input type="text" v-model="Register.mobile" placeholder="输入手机号"
-                                        style="text-align:center">
-                                    <Icon type="ios-person-outline" slot="prepend"></Icon>
-                                    </Input>
-                                    <p class="error-text marb8" v-show="Register.error.mobile">{{Register.error.mobile}}
-                                    </p>
-                                </FormItem>
-                                <FormItem prop="code">
-                                    <div class="flex">
-                                        <Input type="text" v-model="Register.code" placeholder="输入获取的验证码"
-                                            style="text-align:center"></Input>
-                                        <Button type="ghost" @click="seedMessage"
-                                            style="background:#ff6060;color:#fff"></Button>
-                                    </div>
-                                    <p class="error-text marb8" v-show="Register.error.code">{{Register.error.code}}</p>
-                                </FormItem>
-                                <FormItem prop="password">
-                                    <Input type="password" v-model="Register.password" placeholder="输入密码">
-                                    <Icon type="ios-locked-outline" slot="prepend"></Icon>
-                                    </Input>
-                                    <p class="error-text marb8" v-show="Register.error.password">
-                                        {{Register.error.password}}</p>
-                                </FormItem>
-                                <FormItem style="text-align:center">
-                                    <p class="error-text marb8" v-show="Register.error.error">{{Register.error.error}}
-                                    </p>
-                                    <Button type="primary" @click="registerSubmit('Register')"
-                                        style="width:60%;font-size:16px">注册</Button>
-                                </FormItem>
-                            </Form>
-                        </TabPane>
-                    </Tabs>
-                    </Col>
-                </Row>
-                <div slot="footer" style="text-align:center">
-                    <p></p>
+        <div id="login" class="base" v-show="loginShow">
+            <p class="x" @click='hide()'>x</p >
+            <div v-if="signUp">
+                <div class="aim">   
+                    <h2>Hello 亲!</h2>
+                    <h6>需要注册请点击下方！</h6>
+                    <button @click="signUp = !signUp" class="btn ">注册</button>
                 </div>
-            </Modal>
+                <div class="formArea">
+                    <h2>请您进行登录</h2>
+                    <h6>登录完成即可许愿</h6>
+    
+                    <div class="form-group">
+                        <input type="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="电话">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                    </div>
+                    <button class="btn">登录</button>
+    
+                </div>
+            </div>
+    
+            <div v-else>
+                <div class="aim in">
+                    <h2>欢迎回来!</h2>
+                    <h6>注册完成请点击我</h6>
+                    <button @click="signUp = !signUp" class="btn">登录</button>
+                </div>
+                <div class="formArea in">
+                    <h2>注册您的信息</h2>
+                    <h6>注册完成即可登录</h6>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="姓名">
+                    </div>
+                    <div class="form-group">
+                        <input type="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="电话">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                    </div>
+                    <button class="btn">注册</button>
+                </div>
+    
+            </div>
+        </div>
     </div>
+    <script type="text/javascript" src="/public/js/vue.js"></script>
 </body>
 <script>
-    new Vue({
-        el: "#content",
+   var app =  new Vue({
+        el: "#app",
         data() {
             return {
                 star: [
@@ -121,7 +94,8 @@
                     { left: "74%", top: "144%" },
                     { left: "12%", top: "154%" },
                 ],
-                modalvisible: true,
+                signUp: true,
+                loginShow:false,
                 Login: {
                     mobile: "",
                     password: "",
@@ -153,7 +127,12 @@
         },
 
         methods: {
-
+            show(){
+                this.loginShow = true
+            },
+            hide(){
+                this.loginShow = false
+            },
             changeStar() {
                 console.log(1111)
                 console.log(this.$refs.index);
