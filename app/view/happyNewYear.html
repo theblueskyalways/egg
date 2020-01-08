@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>新年许愿树</title>
-
     <!-- 引入Vue -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- 引入样式 -->
-    <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
     <!-- 引入组件库 -->
-    <script src="//unpkg.com/iview@1.0.1/dist/iview.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+    <script type="text/javascript" src="http://v1.vuejs.org/js/vue.min.js"></script>
+    <script type="text/javascript" src="http://unpkg.com/iview@1.0.1/dist/iview.min.js"></script>
     <link rel="stylesheet" href="/public/css/happyNewYear.css">
     <script type="text/javascript" src="/public/js/happyNewYear.js"></script>
 
@@ -25,26 +24,23 @@
         <img class="tree_box" src="/public/img/box.png" alt="">
         <div class="tree tree_3">
             <img src="/public/img/tree-03.png" alt="">
-
         </div>
         <div class="tree tree_2">
             <img src="/public/img/tree-02.png" alt="">
-
         </div>
         <div class="tree tree_1">
             <img src="/public/img/tree-01.png" alt="">
             <img class="star" v-for="(item,index) in star" ref="index" src="/public/img/star.png" alt="">
         </div>
-
-
         <div class="">
-            <Button @click="modal = true" style="font-size:14px;background: #393D49;color: #fff;">登录 注册</Button>
-            <Modal v-model="modal" width="400">
-                <p slot="header" style="color:#f60;text-align:center"></p>
-                <Row :gutter="32">
+            <Button @click="modalvisible = true" style="font-size:14px;background: #393D49;color: #fff;">登录 注册</Button>
+        </div>
+        <Modal :visible.sync="modalvisible" width="400">
+                <p slot="header" style="color:#f60;text-align:center">大大是多少</p>
+                <Row>
                     <Col span="24" class="demo-tabs-style1">
-                    <Tabs>
-                        <TabPane label="登录">
+                    <Tabs value="login">
+                        <TabPane name='login' label="登录">
                             <Form ref="Login" :model="Login" :rules="ruleInline" class="signin" style="margin-top:30px">
                                 <FormItem prop="mobile">
                                     <Input type="text" v-model="Login.mobile" placeholder="输入手机号" @focus="errorUnshow">
@@ -65,12 +61,11 @@
                                         style="width:60%;font-size:16px">登录</Button>
                                 </FormItem>
                             </Form>
-
                             <ul class="form other-form flexa">
                                 <li>
                             </ul>
                         </TabPane>
-                        <TabPane label="注册">
+                        <TabPane name='register' label="注册">
                             <Form ref="Register" :model="Register" :rules="ruleInline" class="signup"
                                 style="margin-top:30px">
                                 <FormItem prop="mobile">
@@ -85,7 +80,6 @@
                                     <div class="flex">
                                         <Input type="text" v-model="Register.code" placeholder="输入获取的验证码"
                                             style="text-align:center"></Input>
-
                                         <Button type="ghost" @click="seedMessage"
                                             style="background:#ff6060;color:#fff"></Button>
                                     </div>
@@ -113,7 +107,6 @@
                     <p></p>
                 </div>
             </Modal>
-        </div>
     </div>
 </body>
 <script>
@@ -128,7 +121,7 @@
                     { left: "74%", top: "144%" },
                     { left: "12%", top: "154%" },
                 ],
-                modal: false,
+                modalvisible: true,
                 Login: {
                     mobile: "",
                     password: "",
@@ -171,7 +164,7 @@
 
             },
             loginSubmit() {
-                var user = this.user;
+                const user = this.user;
                 if (user.username === '' || user.password === '') {
                     return false;
                 }
