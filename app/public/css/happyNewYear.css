@@ -134,4 +134,43 @@ html, body, #app, #login{
 
 
 
- 
+#text{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup {
+  width: 80%;
+  height: 22%;
+  background: #FFFFFF;
+  box-shadow: 2px 2px 20px 1px;
+  overflow-x: auto;
+  display: flex;
+  border-radius: 5%;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.popup input{
+  margin: 4vh 0;
+  width: 100%;
+  height: 30%;
+  border-radius: 5%;
+}
+.popup button{
+  display: inline-block;
+  width: 45%;
+  margin: .5vh 9px;
+  background-color:deepskyblue;
+  border: 3px solid #05c4bb;
+  /* border-radius: 17%; */
+}
+.popup button:last-of-type{
+  margin-top: -36px;
+  margin-left:23vh;
+}

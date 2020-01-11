@@ -23,7 +23,7 @@
 <body>
     <div id="app">
         <img class="tree_bottom" src="/public/img/tree-04.png" alt="">
-        <img class="tree_box" @click='show()' src="/public/img/box.png" alt="">
+        <img class="tree_box" @click='ruleInline()' src="/public/img/box.png" alt="">
         <div class="tree tree_3">
             <img src="/public/img/tree-03.png" alt="">
         </div>
@@ -32,10 +32,10 @@
         </div>
         <div class="tree tree_1" >
             <img src="/public/img/tree-01.png" alt="">
-            <img class="star" v-for="(item,index) in star" ref="index" src="/public/img/star.png" alt="">
+            <img class="star" v-for="(item,index) in star" ref="index" src="/public/img/star.png"  alt="">
         </div>
-        <div id="login" class="base" v-show="loginShow">
-            <p class="x" @click='hide()'>x</p >
+        <div id="login" class="base" v-show="login_show">
+            <p class="x" @click='loginHide()' >x</p>
             <div v-if="signUp">
                 <div class="aim">   
                     <h2>Hello 亲!</h2>
@@ -47,16 +47,15 @@
                     <h6>登录完成即可许愿</h6>
     
                     <div class="form-group">
-                        <input type="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="电话">
+                        <input type="phone"  class="form-control" id="exampleInputPhone1" aria-describedby="phoneHelp" placeholder="电话">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                        <input type="password"  class="form-control" id="exampleInputPassword1" placeholder="密码">
                     </div>
-                    <button class="btn">登录</button>
+                    <button class="btn" @click="loginSubmit()">登录</button>
     
                 </div>
             </div>
-    
             <div v-else>
                 <div class="aim in">
                     <h2>欢迎回来!</h2>
@@ -70,15 +69,23 @@
                         <input type="text" class="form-control" id="exampleInputName1" placeholder="姓名">
                     </div>
                     <div class="form-group">
-                        <input type="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="电话">
+                        <input type="phone" class="form-control" id="exampleInputPhone2" aria-describedby="emailHelp" placeholder="电话">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="密码">
                     </div>
-                    <button class="btn">注册</button>
+                    <button @click="registerSubmit()" class="btn">注册</button>
                 </div>
     
             </div>
+        </div>
+        <div id="text" v-show="txtShow">
+            <div class="popup">
+                <input type="text" placeholder="你的新年愿望">
+                <button>确定</button>
+                <button @click="textHide()">取消</button>
+            </div>
+          
         </div>
     </div>
     <script type="text/javascript" src="/public/js/vue.js"></script>
@@ -96,9 +103,10 @@
                     { left: "12%", top: "154%" },
                 ],
                 signUp: true,
-                loginShow:false,
+                login_show:false,
+                txtShow:false,
                 Login: {
-                    mobile: "",
+                    name: "",
                     password: "",
                     error: {
                         mobile: "",
@@ -108,7 +116,7 @@
                     }
                 },
                 Register: {
-                    mobile: "",
+                    name: "",
                     code: "",
                     password: "",
                     error: {
@@ -126,48 +134,80 @@
                 console.log(res)
             })
             this.changeStar()
-
         },
 
         methods: {
-            show(){
-                this.loginShow = true
+            loginShow:function(){
+                this.login_show = true
             },
-            hide(){
-                this.loginShow = false
+            loginHide:function(){
+                this.login_show = false
             },
-            changeStar() {
-                console.log(1111)
-                console.log(this.$refs.index);
+            textShow:function(){
+                this.txtShow = true
+            },
+            textHide:function(){
+                this.txtShow = false
+            },
+            changeStar:function() {
                 for (const key in this.$refs.index) {
                     this.$refs.index[key].style.left = this.star[key].left
                     this.$refs.index[key].style.top = this.star[key].top
                 }
-
             },
             loginSubmit() {
-                const user = this.user;
-                if (user.username === '' || user.password === '') {
+                event.stopPropagation()
+                this.Login.name = document.getElementById('exampleInputEmail1').value;
+		        this.Login.password = document.getElementById('exampleInputPassword1').value;
+                if (this.Login.name === '' || this.Login.password === '') {
                     return false;
                 }
-                this.$axios.post('/login', this.user).then((response) => {
-                    var status = response.data;
-                    if (status === 'success') {
+                
+                axios.post('/user/login', this.Login).then((response) => {
+                    console.log(response);
+                    sessionStorage.setItem("key", response.data.id);
+                    this.loginHide()
+                    if (response.status === 'success') {
                         //路由跳转
                         this.$router.push('/');
                     } else {
-                        alert(response.data);
+                        log(response.data);
                     }
-                    console.log(response);
                 }).catch((error) => {
-                    console.log(response);
+                    console.log("error");
                 });
-
-
             },
-            ruleInline() { },
+            ruleInline:function() { 
+                console.log(111);
+             
+                var lastname = sessionStorage.getItem("key");
+                if(lastname!=null){
+                    this.textShow();
+                }else{
+                    this.loginShow();
+                }   
+            },
             errorUnshow() { },
-            registerSubmit() { },
+            registerSubmit() { 
+                event.stopPropagation()
+                this.Register.name = document.getElementById('exampleInputPhone2').value;
+                this.Register.code = document.getElementById('exampleInputName1').value;
+		        this.Register.password = document.getElementById('exampleInputPassword2').value;
+                if (this.Register.name === '' || this.Register.password === '' || this.Register.code === '') {
+                    return false;
+                }
+                
+                axios.post('/user/register', this.Register).then((response) => {
+                    console.log(response);
+                    this.signUp=true
+                    if (response.status === 'success') {
+                       console.log("ok");
+                       
+                    } else {
+                        log(response.data);
+                    }
+                })
+            },
             seedMessage() { }
 
         }
