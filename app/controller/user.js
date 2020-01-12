@@ -7,9 +7,9 @@ class HomeController extends Controller {
   // 用户登陆
   async login() {
     const { ctx } = this;
-    const { name, password } = ctx.request.body;
-    if (!name || !password) return this.fail('账户名或密码错误');
-    const result = await ctx.app.mysql.select('user', { where: { name, password } });
+    const { phone, password } = ctx.request.body;
+    if (!phone || !password) return this.fail('账户名或密码错误');
+    const result = await ctx.app.mysql.select('user', { where: { phone, password } });
     if (result.length === 1) return this.success();
     this.fail();
   }
@@ -17,10 +17,12 @@ class HomeController extends Controller {
   // 用户注册
   async register() {
     const { ctx } = this;
-    const { name, password } = ctx.request.body;
+    const { name, password, phone } = ctx.request.body;
     if (!name || !password) return this.fail('参数错误');
-    const result = await ctx.app.mysql.insert('user', { name, password });
-    if (result.effectRows > 0) this.success();
+    const user = await ctx.app.mysql.select('user', { where: { phone } });
+    if (user.length > 0) return this.fail('已有此用户');
+    const result = await ctx.app.mysql.insert('user', { name, password, phone });
+    if (result.affectedRows > 0) return this.success();
     this.fail();
   }
 

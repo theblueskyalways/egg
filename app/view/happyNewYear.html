@@ -66,13 +66,13 @@
                     <h2>注册您的信息</h2>
                     <h6>注册完成即可登录</h6>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="exampleInputName1" placeholder="姓名">
+                        <input type="text" class="form-control" v-model="register.name" id="exampleInputName1" placeholder="姓名">
                     </div>
                     <div class="form-group">
-                        <input type="phone" class="form-control" id="exampleInputPhone2" aria-describedby="emailHelp" placeholder="电话">
+                        <input type="phone" class="form-control" v-model="register.phone" id="exampleInputPhone2" aria-describedby="emailHelp" placeholder="电话">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="密码">
+                        <input type="password" class="form-control" id="exampleInputPassword2" v-model="register.password" placeholder="密码">
                     </div>
                     <button @click="registerSubmit()" class="btn">注册</button>
                 </div>
@@ -115,9 +115,9 @@
                         text: ""
                     }
                 },
-                Register: {
+                register: {
                     name: "",
-                    code: "",
+                    phone: "",
                     password: "",
                     error: {
                         code: "",
@@ -125,13 +125,16 @@
                         error: "",
                         mobile: "",
                     }
-                }
+                },
+                localUrl: 'http://127.0.0.1:7001',
+                requestUrl: 'http://172.81.214.190:7001'
             }
 
         },
         mounted() {
             axios.get('http://172.81.214.190:7001/user/chek').then(res=>{
                 console.log(res)
+                //获取十条愿望
             })
             this.changeStar()
         },
@@ -178,8 +181,6 @@
                 });
             },
             ruleInline:function() { 
-                console.log(111);
-             
                 var lastname = sessionStorage.getItem("key");
                 if(lastname!=null){
                     this.textShow();
@@ -187,22 +188,26 @@
                     this.loginShow();
                 }   
             },
+            checkPhoneNumber(phone){
+                if(!(/^1[3456789]\d{9}$/.test(phone))){ 
+                    alert("手机号码有误，请重填");  
+                    return false; 
+                }
+                return true;
+            },
             errorUnshow() { },
             registerSubmit() { 
                 event.stopPropagation()
-                this.Register.name = document.getElementById('exampleInputPhone2').value;
-                this.Register.code = document.getElementById('exampleInputName1').value;
-		        this.Register.password = document.getElementById('exampleInputPassword2').value;
-                if (this.Register.name === '' || this.Register.password === '' || this.Register.code === '') {
-                    return false;
+                console.log(this.register)
+                if (!this.register.name || !this.register.password || !this.register.phone === '') {
+                    return alert('密码用户名不能为空');
                 }
-                
-                axios.post('/user/register', this.Register).then((response) => {
+                if(!this.checkPhoneNumber(this.register.phone)) return;
+                axios.post(`${this.localUrl}/user/register`, this.register).then((response) => {
                     console.log(response);
                     this.signUp=true
                     if (response.status === 'success') {
-                       console.log("ok");
-                       
+                       alert('注册成功')
                     } else {
                         log(response.data);
                     }

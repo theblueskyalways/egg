@@ -13,7 +13,7 @@ input{
 } */
 
 /* 方便具体页面设置不同的背景色 */
-html, body, #app, #login{
+html, body, #app{
    min-height: 100%;
    padding: 1px 0; 
    margin: -1px 0; 
@@ -173,4 +173,8 @@ html, body, #app, #login{
 .popup button:last-of-type{
   margin-top: -36px;
   margin-left:23vh;
+}
+
+.base{
+  height: 60%;
 }
