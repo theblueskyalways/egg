@@ -9,8 +9,8 @@ class HomeController extends Controller {
     const { ctx } = this;
     const { phone, password } = ctx.request.body;
     if (!phone || !password) return this.fail('账户名或密码错误');
-    const result = await ctx.app.mysql.select('wish', { where: { phone, password } });
-    if (result.length === 1) return this.success();
+    const result = await ctx.app.mysql.select('user', { where: { phone, password } },'wish');
+    if (result.length === 1) return this.success(result);
     this.fail();
   }
 
