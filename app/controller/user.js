@@ -9,7 +9,7 @@ class HomeController extends Controller {
     const { ctx } = this;
     const { phone, password } = ctx.request.body;
     if (!phone || !password) return this.fail('账户名或密码错误');
-    const result = await ctx.app.mysql.select('user', { where: { phone, password } });
+    const result = await ctx.app.mysql.select('user', { where: { phone, password } },'wish');
     if (result.length === 1) return this.success();
     this.fail();
   }
@@ -25,6 +25,7 @@ class HomeController extends Controller {
     if (result.affectedRows > 0) return this.success();
     this.fail();
   }
+
 
   // 用户查看愿望
   async checkWishs() {

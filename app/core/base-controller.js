@@ -47,6 +47,8 @@ class BaseController extends Controller {
         this.ctx.status = 200;
         break;
     }
+    console.log(data);
+    
     const result = {
       status: 'success',
       data: data ? data : {},
