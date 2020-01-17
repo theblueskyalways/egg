@@ -40,6 +40,15 @@
 				<span class="comments">// 我很幸运的赶上了你的生日.</span><br />
 				<span class="comments">// 只能这样祝18岁的卷毛毛生日快乐.</span><br />
 				<span class="comments">// 未完待续...</span><br />
+				<span class="comments">// 2020年1月17日 这是难忘的一天</span><br />
+				<span class="comments">// 在上班的地铁上看了信</span><br />
+				<span class="comments">// 看到一半我不敢接着看</span><br />
+				<span class="comments">// 我恍惚了一早上</span><br />
+				<span class="comments">// 可能我们之间沟通上还是有点差强人意</span><br />
+				<span class="comments">// 但是这段我不知道是什么的关系还是让我记忆深刻</span><br />
+				<span class="comments">// 很幸运认识你</span><br />
+				<span class="comments">// 很不幸认识你</span><br />
+				<span class="comments">// 完</span><br />
 				<!-- <span class="keyword">boolean</span> isHesitate = <span class="keyword">true</span>;<br /> -->
 				<!-- <span class="keyword">while</span> (isHesitate) {<br /> -->
 				<!-- <span class="placeholder"/>i.waitFor(u);<br /> -->
@@ -54,8 +63,12 @@
 				<canvas id="garden"></canvas>
 				<div id="words">
 					<div id="messages">
-						卷毛毛, 我们已经认识了这么多时间
-						<div id="elapseClock"></div>
+						卷毛毛, 我们已经陌生了这么多时间
+						<div id="leaveClock"></div>
+					</div>
+					<div id="messages">
+						
+						<div id="levaveClock"></div>
 					</div>
 					<!-- <div id="loveu">
 						Love u forever and ever.<br/>
@@ -80,7 +93,14 @@
 		together.setMinutes(26);
 		together.setSeconds(0);
 		together.setMilliseconds(0);
-		
+		var leave = new Date();
+		leave.setFullYear(2020);
+        leave.setMonth(1);
+        leave.setDate(17);
+		leave.setHours(0);
+		leave.setMinutes(0);
+		leave.setSeconds(0);
+		leave.setMilliseconds(0);
 		if (!document.createElement('canvas').getContext) {
 			var msg = document.createElement("div");
 			msg.id = "errorMsg";
@@ -94,11 +114,12 @@
 			setTimeout(function () {
 				startHeartAnimation();
 			}, 5000);
-			timeElapse(together);
+			timeElapse(leave, 'elapseClock');
+			timeElapse(leave, 'leaveClock');
 			setInterval(function () {
-				timeElapse(together);
+				timeElapse(leave, 'elapseClock');
+				timeElapse(leave, 'leaveClock');
 			}, 500);
-
 			adjustCodePosition();
 			$("#code").typewriter();
 		}

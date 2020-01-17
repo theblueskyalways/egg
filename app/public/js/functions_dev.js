@@ -98,7 +98,7 @@ function startHeartAnimation() {
   };
 })(jQuery);
 
-function timeElapse(date) {
+function timeElapse(date, id) {
   const current = Date();
   let seconds = (Date.parse(current) - Date.parse(date)) / 1000;
   const days = Math.floor(seconds / (3600 * 24));
@@ -117,7 +117,7 @@ function timeElapse(date) {
     seconds = '0' + seconds;
   }
   const result = '<span class="digit">' + days + '</span> days <span class="digit">' + hours + '</span> hours <span class="digit">' + minutes + '</span> minutes <span class="digit">' + seconds + '</span> seconds';
-  $('#elapseClock').html(result);
+  $(`#${id}`).html(result);
 }
 
 function showMessages() {
