@@ -187,8 +187,6 @@
             },
             ruleInline:function() { 
                 var lastname = sessionStorage.getItem("key");
-                console.log(lastname);
-                
                 if(lastname!=null&&lastname!="undefined"){
                     this.textShow();
                 }else{
@@ -199,7 +197,7 @@
                 if(!(/^1[3456789]\d{9}$/.test(phone))){ 
                     alert("手机号码有误，请重填");  
                     return false; 
-                9}
+                }
                 return true;
             },
             errorUnshow() {},
@@ -211,7 +209,6 @@
                 }
                 if(!this.checkPhoneNumber(this.register.phone)) return;
                 axios.post(`${this.requestUrl}/user/register`, this.register).then((response) => {
-                    console.log(response);
                     this.signUp=true
                     if (response.status === 'success') {
                        alert('注册成功')
