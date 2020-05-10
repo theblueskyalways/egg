@@ -1,0 +1,33 @@
+{
+  "name": "admin",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@alicloud/sms-sdk": "^1.1.6",
+    "commander": "^2.19.0",
+    "connect-memcached": "^1.0.0",
+    "connect-multiparty": "^2.2.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "express-domain-middleware": "^0.1.0",
+    "express-session": "^1.15.6",
+    "formidable": "^1.2.1",
+    "hashring": "^3.2.0",
+    "http-errors": "~1.6.2",
+    "lodash": "^4.17.15",
+    "md5": "^2.2.1",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.22.2",
+    "morgan": "~1.9.0",
+    "mysql": "^2.16.0",
+    "path": "^0.12.7",
+    "qr-image": "^3.2.0",
+    "request": "^2.88.0",
+    "uuid": "^3.3.2"
+  }
+}

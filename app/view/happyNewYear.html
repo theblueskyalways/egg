@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <div id="app">          
+    <div id="app" class="container-fluid">          
         <img class="tree_bottom" src="/public/img/tree-04.png" alt="">
         <img class="tree_box" @click='ruleInline()' src="/public/img/box.png" alt="">
         <div class="tree tree_3">
@@ -80,10 +80,10 @@
             </div>
         </div>
         <div id="text" v-show="txtShow">
-            <div class="popup">
+            <div class="popup row" >
                 <textarea v-model="wish.content" rows="3" cols="20" placeholder="你的新年愿望"></textarea>
-                <button @click="addWish_m()">确定</button>
-                <button @click="textHide()">取消</button>
+                <button @click="addWish_m()" class="col-3">确定</button>
+                <button @click="textHide()"  class="col-3">取消</button>
             </div>
           
         </div>
@@ -171,13 +171,14 @@
                 if (this.Login.phone === '' || this.Login.password === '') {
                     return false;
                 }
-                axios.post(`${this.requestUrl}/user/login`, this.Login).then((response) => {
+                axios.post(`${this.localUrl}/user/login`, this.Login).then((response) => {
                     console.log(response);
-                    sessionStorage.setItem("key", response.data.id);
+                    sessionStorage.setItem("key", response.data.data.id);
                     this.loginHide()
-                    if (response.status === 'success') {
+                    if (response.data.status === 'success') {
                         //路由跳转
-                        this.$router.push('/');
+                        alert(`欢迎您，${response.data.data.name}`)
+                        // this.$router.push('/');
                     } else {
                         log(response.data);
                     }

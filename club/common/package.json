@@ -1,0 +1,9 @@
+{
+	"dependencies": {
+		"crypto"    : "",
+		"formidable": "",
+		"fs"        : "",
+		"mkdirp"    : "",
+		"request"   : ""
+	}
+}

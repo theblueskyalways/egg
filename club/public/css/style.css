@@ -1,0 +1,33 @@
+* { -webkit-text-size-adjust : none !important; -moz-text-size-adjust : none !important; -ms-text-size-adjust : none !important;font-size: 12px !important; }
+/*ztree*/
+.ztree li a { height : 22px }
+.ztree li a:hover { text-decoration : none }
+.ztree li a.curSelectedNode { height : 22px; border : none; background-color : transparent; opacity : 1; padding-top : 1px }
+.ztree li span.button, .ztree li span.button.chk.radio_false_full { background : url('../img/ztree.png') 0 0 }
+.ztree li span.button.chk.checkbox_false_full_focus, .ztree li span.button.chk.radio_false_full_focus { background-position : 0 -18px }
+.ztree li span.button.chk.checkbox_true_full, .ztree li span.button.chk.radio_true_full { background-position : -18px 0 }
+.ztree li span.button.chk.checkbox_true_full_focus, .ztree li span.button.chk.radio_true_full_focus { background-position : -18px -18px }
+.ztree li span.button.chk.checkbox_true_part, .ztree li span.button.chk.radio_true_part, .ztree li span.button.chk.checkbox_false_part, .ztree li span.button.chk.radio_false_part { background-position : -18px -36px }
+.ztree li span.button.chk.checkbox_true_part_focus, .ztree li span.button.chk.radio_true_part_focus, .ztree li span.button.chk.checkbox_false_part_focus, .ztree li span.button.chk.radio_false_part_focus { background-position : -18px -54px }
+.ztree li span.button.chk { width : 18px; height : 18px; margin : 0 4px }
+.ztree li span.button.noline_close { background-position : -36px 0 }
+.ztree li span.button.noline_open { background-position : -36px -18px }
+.layui-btn-small i { font-size : 12px !important }
+.layui-tab-brief > .layui-tab-title .layui-this { color : #EA5505 }
+.layui-tab-brief > .layui-tab-more li.layui-this:after, .layui-tab-brief > .layui-tab-title .layui-this:after { border-bottom-color : #EA5505 }
+.layui-tab-title li, .layui-table td, .layui-table th { font-size : 12px }
+.layui-layer-btn { border-top : 1px solid #EEEEEE }
+.layui-layer-btn .layui-layer-btn0 { background-color : #FFFFFF !important; border-color : #FFFFFF !important; color : #333333 !important }
+.layui-layer-title, .layui-layer-dialog .layui-layer-content { font-size : 12px !important }
+.layui-layer-dialog .layui-layer-content .layui-layer-ico { top : 50% !important; margin-top : -15px }
+.layui-tab-card > .layui-tab-more .layui-this { color : #EA5505 }
+.layui-btn .layui-icon { margin-right : 8px }
+/*popup*/
+body > div.layui-form.popup { display : none !important }
+div.layui-form.popup > .layui-form-item[pane]:not(:last-of-type) { margin-bottom : 0; border-bottom : none }
+div.layui-form.popup .layui-btn { display : block; margin : auto }
+div.layui-form.popup .layui-input-block { left : 0 }
+div.layui-form.popup input { border-color : transparent !important; padding : 0 10px }
+div.layui-form.popup .layui-form-item .layui-form-checkbox[lay-skin=primary] { margin : 4px 0 4px 10px }
+.layui-layer.layui-layer-page { width : auto !important }
+.layui-layer.layui-layer-page .layui-layer-content { padding : 10px }

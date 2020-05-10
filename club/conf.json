@@ -1,0 +1,13 @@
+{
+  "badminton": {
+    "product": "club",
+    "database": {
+      "connectionLimit": 10,
+      "host": "123.57.224.98",
+      "port": 3306,
+      "user": "root",
+      "password": "wdwlyn8023lzc",
+      "database": "club"
+    }
+  }
+}

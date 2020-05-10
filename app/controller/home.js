@@ -43,6 +43,14 @@ class HomeController extends Controller {
       title,
     });
   }
+
+  async word() {
+    const { ctx } = this;
+    const title = '单词本'; // 向模板传入数据
+    await ctx.render('word', {
+      title,
+    });
+  }
 }
 
 module.exports = HomeController;
