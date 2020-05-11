@@ -424,30 +424,47 @@ router.post('/upload/ground_view', async (req, res) => {
 
 // word
 
-/* 获取clubList列表*/
 router.post('/word/list', async (req, res) => {
   try {
     const word = func.trim(req.body.params.word || ''),
       type = func.toInt(req.body.params.type || 0),
-      user = func.toInt(req.body.params.user || 0);
-    let sql = 'SELECT * FROM v_word WHERE 1=1 AND user=?',
+      user = func.toInt(req.body.params.user || 0),
+      page = func.toInt(req.body.params.page);
+    let sql = 'SELECT * FROM v_myword WHERE 1=1 AND user=?',
+      wordsql = 'SELECT id FROM v_word WHERE 1=1 ',
+      wordvalues = [],
       values = [ user ];
+    let searchWord = [];
     if (word) {
-      sql += ' AND word LIKE ?';
-      values.push(`%${word}%`);
+      wordsql += ' AND (word LIKE ? OR translate LIKE ?)';
+      wordvalues = wordvalues.concat([ `%${word}%`, `%${word}%` ]);
+      wordvalues.push(`%${word}%`);
+      searchWord = await mysql.query(wordsql, wordvalues);
+      sql += ' AND word IN(' + mysql.join(searchWord.map(v => v.id)) + ')';
     }
     if (type) {
       sql += ' AND type=?';
       values.push(type);
     }
+    sql += ' ORDER BY id ASC LIMIT ?,?';
+    values = values.concat([ (page - 1) * consts.PAGE_SIZE, consts.PAGE_SIZE ]);
     let list = await mysql.query(sql, values);
-    list = list.map(v => ({
-      ...v,
-      ctime: moment.unix(v.ctime).format('YYYY-MM-DD'),
-    }));
+    let wordList = await mysql.query('SELECT * FROM v_word WHERE id IN(' + mysql.join(list.map(v => v.word)) + ')');
+    wordList = array.assoc(wordList, 'id');
+    list = list.map(v => {
+      const item = wordList[v.word];
+      return {
+        wordName: item.word,
+        translate: item.translate,
+        ...v,
+        ctime: moment.unix(v.ctime).format('YYYY-MM-DD'),
+      };
+    });
+    const count = await mysql.count(sql, values);
     res.json({
       code: code.OK,
       list,
+      total: count,
     });
   } catch (e) {
     console.error(e);
@@ -455,7 +472,7 @@ router.post('/word/list', async (req, res) => {
   }
 });
 
-/* 新建club*/
+/* word*/
 router.post('/word/add', async (req, res) => {
   try {
     const id = func.trim(req.body.params.id || 0),
@@ -464,9 +481,10 @@ router.post('/word/add', async (req, res) => {
       user = func.toInt(req.body.params.user);
     if (func.empty(word)) return res.json(code.message(code.InvalidParam));
     if (id <= 0) {
-      await mysql.query('INSERT INTO v_word(word,translate,ctime,user,type) VALUES(?,?,?,?,?)', [
+      const result = await mysql.query('INSERT INTO v_word(word,translate,ctime,user,type) VALUES(?,?,?,?,?)', [
         word, translate, func.now(), user, consts.NEWWORD,
       ]);
+      await mysql.query('INSERT INTO v_myword(user,word,ctime,type) VALUES(?,?,?,?)', [ user, result.insertId, func.now(), consts.NEWWORD ]);
     } else if (id > 0) {
       await mysql.query('UPDATE v_word SET word=?,translate=? WHERE id=?', [ word, translate, id ]);
     }
@@ -481,11 +499,237 @@ router.post('/word/opt', async (req, res) => {
   try {
     const id = func.toInt(req.body.params.id || 0),
       type = func.toInt(req.body.params.type || '');
-    await mysql.query('UPDATE v_word SET type=? WHERE id=?', [ type, id ]);
+    await mysql.query('UPDATE v_myword SET type=? WHERE id=?', [ type, id ]);
     res.json({ code: code.OK, msg: '操作成功' });
   } catch (e) {
     console.error(e);
     res.sendStatus(code.InternalError);
   }
 });
+
+router.post('/word/myopt', async (req, res) => {
+  try {
+    const id = func.toInt(req.body.params.id || 0),
+      user = func.toInt(req.body.params.user || 0);
+    await mysql.query('INSERT INTO v_myword(user,word,ctime,type) VALUES(?,?,?,?)', [ user, id, func.now(), consts.NEWWORD ]);
+    res.json({ code: code.OK, msg: '操作成功' });
+  } catch (e) {
+    console.error(e);
+    res.sendStatus(code.InternalError);
+  }
+});
+
+router.post('/word/all', async (req, res) => {
+  try {
+    const word = func.trim(req.body.params.word || ''),
+      type = func.toInt(req.body.params.type || 0),
+      user = func.toInt(req.body.params.user || 0),
+      page = func.toInt(req.body.params.page);
+    let sql = 'SELECT * FROM v_word WHERE 1=1',
+      values = [];
+    if (word) {
+      sql += ' AND (word LIKE ? OR translate LIKE ?)';
+      values = values.concat([ `%${word}%`, `%${word}%` ]);
+    }
+    if (type) {
+      let userList = [];
+      switch (type) {
+        case 1:
+          userList = await mysql.query('SELECT id,word FROM v_myword WHERE user=?', [ user ]);
+          sql += ' AND id IN(' + mysql.join(userList.map(v => v.word)) + ')';
+          break;
+        case 2:
+          userList = await mysql.query('SELECT id,word FROM v_myword WHERE user=?', [ user ]);
+          sql += ' AND id NOT IN(' + mysql.join(userList.map(v => v.word)) + ')';
+          break;
+      }
+    }
+    sql += ' ORDER BY id ASC LIMIT ?,?';
+    values = values.concat([ (page - 1) * consts.PAGE_SIZE, consts.PAGE_SIZE ]);
+    let list = await mysql.query(sql, values);
+    let userWordList = await mysql.query('SELECT id,word FROM v_myword WHERE word IN(' + mysql.join(list.map(v => v.id)) + ') AND user=?', [ user ]);
+    userWordList = array.assoc(userWordList, 'word');
+    list = list.map(v => ({
+      ...v,
+      isMy: !!userWordList[v.id],
+      ctime: moment.unix(v.ctime).format('YYYY-MM-DD'),
+    }));
+    const count = await mysql.count(sql, values);
+    res.json({
+      code: code.OK,
+      list,
+      total: count,
+    });
+  } catch (e) {
+    console.error(e);
+    res.sendStatus(code.InternalError);
+  }
+});
+
+router.post('/wordGroup/all', async (req, res) => {
+  try {
+    const word = func.trim(req.body.params.word || ''),
+      type = func.toInt(req.body.params.type || 0),
+      user = func.toInt(req.body.params.user || 0),
+      page = func.toInt(req.body.params.page);
+    let sql = 'SELECT * FROM v_wordgroup WHERE 1=1',
+      values = [];
+    if (word) {
+      sql += ' AND (word LIKE ? OR translate LIKE ?)';
+      values = values.concat([ `%${word}%`, `%${word}%` ]);
+    }
+    if (type) {
+      let userList = [];
+      switch (type) {
+        case 1:
+          userList = await mysql.query('SELECT id,word FROM v_mywordgroup WHERE user=?', [ user ]);
+          sql += ' AND id IN(' + mysql.join(userList.map(v => v.word)) + ')';
+          break;
+        case 2:
+          userList = await mysql.query('SELECT id,word FROM v_mywordgroup WHERE user=?', [ user ]);
+          sql += ' AND id NOT IN(' + mysql.join(userList.map(v => v.word)) + ')';
+          break;
+      }
+    }
+    sql += ' ORDER BY id ASC LIMIT ?,?';
+    values = values.concat([ (page - 1) * consts.PAGE_SIZE, consts.PAGE_SIZE ]);
+    let list = await mysql.query(sql, values);
+    let userWordList = await mysql.query('SELECT id,word FROM v_mywordgroup WHERE word IN(' + mysql.join(list.map(v => v.id)) + ') AND user=?', [ user ]);
+    userWordList = array.assoc(userWordList, 'word');
+    list = list.map(v => ({
+      ...v,
+      isMy: !!userWordList[v.id],
+      ctime: moment.unix(v.ctime).format('YYYY-MM-DD'),
+    }));
+    const count = await mysql.count(sql, values);
+    res.json({
+      code: code.OK,
+      list,
+      total: count,
+    });
+  } catch (e) {
+    console.error(e);
+    res.sendStatus(code.InternalError);
+  }
+});
+
+router.post('/wordGroup/list', async (req, res) => {
+  try {
+    const word = func.trim(req.body.params.word || ''),
+      type = func.toInt(req.body.params.type || 0),
+      user = func.toInt(req.body.params.user || 0),
+      page = func.toInt(req.body.params.page);
+    let sql = 'SELECT * FROM v_mywordgroup WHERE 1=1 AND user=?',
+      wordsql = 'SELECT id FROM v_wordgroup WHERE 1=1 ',
+      wordvalues = [],
+      values = [ user ];
+    let searchWord = [];
+    if (word) {
+      wordsql += ' AND (word LIKE ? OR translate LIKE ?)';
+      wordvalues = wordvalues.concat([ `%${word}%`, `%${word}%` ]);
+      wordvalues.push(`%${word}%`);
+      searchWord = await mysql.query(wordsql, wordvalues);
+      sql += ' AND word IN(' + mysql.join(searchWord.map(v => v.id)) + ')';
+    }
+    if (type) {
+      sql += ' AND type=?';
+      values.push(type);
+    }
+    sql += ' ORDER BY id ASC LIMIT ?,?';
+    values = values.concat([ (page - 1) * consts.PAGE_SIZE, consts.PAGE_SIZE ]);
+    let list = await mysql.query(sql, values);
+    let wordList = await mysql.query('SELECT * FROM v_wordgroup WHERE id IN(' + mysql.join(list.map(v => v.word)) + ')');
+    wordList = array.assoc(wordList, 'id');
+    list = list.map(v => {
+      const item = wordList[v.word];
+      return {
+        ...item,
+        wordName: item.word,
+        ...v,
+        ctime: moment.unix(v.ctime).format('YYYY-MM-DD'),
+      };
+    });
+    const count = await mysql.count(sql, values);
+    res.json({
+      code: code.OK,
+      list,
+      total: count,
+    });
+  } catch (e) {
+    console.error(e);
+    res.sendStatus(code.InternalError);
+  }
+});
+
+/* word*/
+router.post('/wordGroup/add', async (req, res) => {
+  try {
+    const id = func.trim(req.body.params.id || 0),
+      word = func.trim(req.body.params.word || ''),
+      translate = func.trim(req.body.params.translate || ''),
+      user = func.toInt(req.body.params.user);
+    if (func.empty(word)) return res.json(code.message(code.InvalidParam));
+    if (id <= 0) {
+      const result = await mysql.query('INSERT INTO v_wordgroup(word,translate,ctime,user,type) VALUES(?,?,?,?,?)', [
+        word, translate, func.now(), user, consts.NEWWORD,
+      ]);
+      await mysql.query('INSERT INTO v_mywordgroup(user,word,ctime,type) VALUES(?,?,?,?)', [ user, result.insertId, func.now(), consts.NEWWORD ]);
+    } else if (id > 0) {
+      await mysql.query('UPDATE v_wordgroup SET word=?,translate=? WHERE id=?', [ word, translate, id ]);
+    }
+    res.json({ code: code.OK, msg: id > 0 ? '编辑成功' : '创建成功' });
+  } catch (e) {
+    console.error(e);
+    res.sendStatus(code.InternalError);
+  }
+});
+
+router.post('/wordGroup/opt', async (req, res) => {
+  try {
+    const id = func.toInt(req.body.params.id || 0),
+      type = func.toInt(req.body.params.type || '');
+    await mysql.query('UPDATE v_mywordgroup SET type=? WHERE id=?', [ type, id ]);
+    res.json({ code: code.OK, msg: '操作成功' });
+  } catch (e) {
+    console.error(e);
+    res.sendStatus(code.InternalError);
+  }
+});
+
+router.post('/wordGroup/myopt', async (req, res) => {
+  try {
+    const id = func.toInt(req.body.params.id || 0),
+      user = func.toInt(req.body.params.user || 0);
+    await mysql.query('INSERT INTO v_mywordgroup(user,word,ctime,type) VALUES(?,?,?,?)', [ user, id, func.now(), consts.NEWWORD ]);
+    res.json({ code: code.OK, msg: '操作成功' });
+  } catch (e) {
+    console.error(e);
+    res.sendStatus(code.InternalError);
+  }
+});
+
+router.get('/word/all', async (req, res) => {
+  let data = await mysql.query('SELECT * FROM v_word where 1=1');
+  data = array.assoc(data, 'user', 'all');
+  const sqlArr = [];
+  _.each(data, (data, key) => {
+    let sql = 'INSERT INTO v_myword(user,word,ctime,type) VALUES',
+      values = [];
+    for (let i = 0; i < data.length; i++) {
+      sql += ' (?,?,?,?),';
+      values = values.concat([ key, data[i].id, data[i].ctime, data[i].type ]);
+    }
+    sql = sql.substr(0, sql.length - 1) + ';';
+    sqlArr.push({
+      sql,
+      values,
+    });
+  });
+  for (let i = 0; i < sqlArr.length; i++) {
+    await mysql.query(sqlArr[i].sql, sqlArr[i].values);
+  }
+  res.json(200);
+});
+
+
 module.exports = router;
