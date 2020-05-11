@@ -44,13 +44,14 @@ router.post('/login', async (req, res) => {
         phone, md5(password),
       ]),
       role = array.assoc(consts.role, 'id');
+
     if (user.length > 0) {
       user.each(v => {
         v.role_name = array.tryGet(role, v.role, '角色已删除').name;
       });
       user = user[0];
       req.session.user = user;
-      let url = '/main';
+      let url = '/word';
       if (user.role === consts.ADMIN) url = '/word';
       if (user.role === consts.USER) url = '/word';
       res.json({
