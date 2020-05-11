@@ -1,6 +1,6 @@
 const express = require('express'),
   mysql = require('./mysql'),
-  consts = require('./consts').default,
+  consts = require('./consts'),
   verify = require('./verify'),
   conf = require('../conf.json').badminton,
   array = require('../common/array'),
