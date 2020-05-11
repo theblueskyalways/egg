@@ -430,8 +430,8 @@ router.post('/word/list', async (req, res) => {
     const word = func.trim(req.body.params.word || ''),
       type = func.toInt(req.body.params.type || 0),
       user = func.toInt(req.body.params.user || 0);
-    let sql = 'SELECT * FROM v_word WHERE 1=1',
-      values = [];
+    let sql = 'SELECT * FROM v_word WHERE 1=1 AND user=?',
+      values = [ user ];
     if (word) {
       sql += ' AND word LIKE ?';
       values.push(`%${word}%`);
