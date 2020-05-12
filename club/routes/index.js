@@ -429,6 +429,7 @@ router.post('/word/list', async (req, res) => {
     const word = func.trim(req.body.params.word || ''),
       type = func.toInt(req.body.params.type || 0),
       user = func.toInt(req.body.params.user || 0),
+      pagecount = func.toInt(req.body.params.count || 0),
       page = func.toInt(req.body.params.page);
     let sql = 'SELECT * FROM v_myword WHERE 1=1 AND user=?',
       wordsql = 'SELECT id FROM v_word WHERE 1=1 ',
@@ -446,8 +447,8 @@ router.post('/word/list', async (req, res) => {
       sql += ' AND type=?';
       values.push(type);
     }
-    sql += ' ORDER BY id ASC LIMIT ?,?';
-    values = values.concat([ (page - 1) * consts.PAGE_SIZE, consts.PAGE_SIZE ]);
+    sql += ' ORDER BY order_ ASC LIMIT ?,?';
+    values = values.concat([ (page - 1) * (pagecount || consts.PAGE_SIZE), pagecount || consts.PAGE_SIZE ]);
     let list = await mysql.query(sql, values);
     let wordList = await mysql.query('SELECT * FROM v_word WHERE id IN(' + mysql.join(list.map(v => v.word)) + ')');
     wordList = array.assoc(wordList, 'id');
@@ -461,10 +462,16 @@ router.post('/word/list', async (req, res) => {
       };
     });
     const count = await mysql.count(sql, values);
+    const newword = await mysql.query('SELECT count(*) AS c FROM v_myword WHERE user=? AND type=?', [ user, consts.NEWWORD ]);
+    const oldword = await mysql.query('SELECT count(*) AS c FROM v_myword WHERE user=? AND type=?', [ user, consts.OLDWORD ]);
+    const allword = await mysql.query('SELECT count(*) AS c FROM v_myword WHERE user=?', [ user ]);
     res.json({
       code: code.OK,
       list,
       total: count,
+      allword: allword[0].c,
+      newword: newword[0].c,
+      oldword: oldword[0].c,
     });
   } catch (e) {
     console.error(e);
@@ -484,7 +491,8 @@ router.post('/word/add', async (req, res) => {
       const result = await mysql.query('INSERT INTO v_word(word,translate,ctime,user,type) VALUES(?,?,?,?,?)', [
         word, translate, func.now(), user, consts.NEWWORD,
       ]);
-      await mysql.query('INSERT INTO v_myword(user,word,ctime,type) VALUES(?,?,?,?)', [ user, result.insertId, func.now(), consts.NEWWORD ]);
+      const order_ = await mysql.query('INSERT INTO v_myword(user,word,ctime,type) VALUES(?,?,?,?)', [ user, result.insertId, func.now(), consts.NEWWORD ]);
+      await mysql.query('UPDATE v_myword SET order=? WHERE id=?', [ order_.insertId, order_.insertId ]);
     } else if (id > 0) {
       await mysql.query('UPDATE v_word SET word=?,translate=? WHERE id=?', [ word, translate, id ]);
     }
@@ -512,6 +520,31 @@ router.post('/word/myopt', async (req, res) => {
     const id = func.toInt(req.body.params.id || 0),
       user = func.toInt(req.body.params.user || 0);
     await mysql.query('INSERT INTO v_myword(user,word,ctime,type) VALUES(?,?,?,?)', [ user, id, func.now(), consts.NEWWORD ]);
+    res.json({ code: code.OK, msg: '操作成功' });
+  } catch (e) {
+    console.error(e);
+    res.sendStatus(code.InternalError);
+  }
+});
+
+
+router.post('/word/order', async (req, res) => {
+  try {
+    const offset = func.toInt(req.body.params.offset || 0),
+      startorder = func.toInt(req.body.params.startorder || 0),
+      endorder = func.toInt(req.body.params.endorder || 0),
+      user = func.toInt(req.body.params.user || 0),
+      word = func.toInt(req.body.params.word || 0);
+    let sql = '';
+    if (offset > 0) {
+      sql = 'UPDATE v_myword SET order_=order_+? WHERE order_>=? AND order_<? AND user=?';
+
+    } else {
+      sql = 'UPDATE v_myword SET order_=order_+? WHERE order_>? AND order_<=? AND user=?';
+    }
+    await mysql.query(sql, [ offset > 0 ? 1 : -1, offset > 0 ? startorder - offset : startorder, offset > 0 ? startorder : startorder - offset, user ]);
+    await mysql.query('UPDATE v_myword SET order_=? WHERE id=? ', [ endorder, word ]);
+
     res.json({ code: code.OK, msg: '操作成功' });
   } catch (e) {
     console.error(e);
