@@ -488,6 +488,10 @@ router.post('/word/add', async (req, res) => {
       user = func.toInt(req.body.params.user);
     if (func.empty(word)) return res.json(code.message(code.InvalidParam));
     if (id <= 0) {
+      const data = await mysql.query('SELECT count(*) AS c FROM v_word WHERE word=?', [ word ]);
+      if (data[0].c > 0) {
+        return res.json({ code: code.Unknown, msg: '这个单词已经添加过了' });
+      }
       const result = await mysql.query('INSERT INTO v_word(word,translate,ctime,user,type) VALUES(?,?,?,?,?)', [
         word, translate, func.now(), user, consts.NEWWORD,
       ]);
