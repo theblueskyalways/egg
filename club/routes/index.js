@@ -492,7 +492,7 @@ router.post('/word/add', async (req, res) => {
         word, translate, func.now(), user, consts.NEWWORD,
       ]);
       const order_ = await mysql.query('INSERT INTO v_myword(user,word,ctime,type) VALUES(?,?,?,?)', [ user, result.insertId, func.now(), consts.NEWWORD ]);
-      await mysql.query('UPDATE v_myword SET order=? WHERE id=?', [ order_.insertId, order_.insertId ]);
+      await mysql.query('UPDATE v_myword SET order_=? WHERE id=?', [ order_.insertId, order_.insertId ]);
     } else if (id > 0) {
       await mysql.query('UPDATE v_word SET word=?,translate=? WHERE id=?', [ word, translate, id ]);
     }
