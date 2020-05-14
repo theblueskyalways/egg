@@ -745,27 +745,34 @@ router.post('/wordGroup/myopt', async (req, res) => {
   }
 });
 
-router.get('/word/all', async (req, res) => {
-  let data = await mysql.query('SELECT * FROM v_word where 1=1');
-  data = array.assoc(data, 'user', 'all');
-  const sqlArr = [];
-  _.each(data, (data, key) => {
-    let sql = 'INSERT INTO v_myword(user,word,ctime,type) VALUES',
-      values = [];
-    for (let i = 0; i < data.length; i++) {
-      sql += ' (?,?,?,?),';
-      values = values.concat([ key, data[i].id, data[i].ctime, data[i].type ]);
+router.post('/word/test', async (req, res) => {
+  try {
+    const type = func.toInt(req.body.params.type || 0),
+      user = func.toInt(req.body.params.user || 0),
+      pagecount = func.toInt(req.body.params.count || 0),
+      page = func.toInt(req.body.params.page);
+    const sql = 'SELECT * FROM v_word order by rand() limit  10',
+      values = [ ];
+    const list = await mysql.query(sql, values);
+    if (type == 1) {
+      for (let i = 0; i < list.length; i++) {
+        let options = await mysql.query('SELECT translate FROM v_word order by rand() limit  4 ', [ list[i].id ]);
+        options = options.map(v => ({ label: v.translate, isAnswer: false }));
+        const index = Math.ceil(Math.random() * 4 - 1);
+        options[index] = { label: list[i].translate, isAnswer: true };
+        list[i].options = options;
+      }
     }
-    sql = sql.substr(0, sql.length - 1) + ';';
-    sqlArr.push({
-      sql,
-      values,
+    const count = await mysql.query('SELECT count(*) AS c FROM v_word WHERE 1=1');
+    res.json({
+      code: code.OK,
+      list,
+      total: count[0].c,
     });
-  });
-  for (let i = 0; i < sqlArr.length; i++) {
-    await mysql.query(sqlArr[i].sql, sqlArr[i].values);
+  } catch (e) {
+    console.error(e);
+    res.sendStatus(code.InternalError);
   }
-  res.json(200);
 });
 
 
