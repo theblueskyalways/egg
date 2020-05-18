@@ -751,9 +751,19 @@ router.post('/word/test', async (req, res) => {
       user = func.toInt(req.body.params.user || 0),
       pagecount = func.toInt(req.body.params.count || 0),
       page = func.toInt(req.body.params.page);
-    const sql = 'SELECT * FROM v_word order by rand() limit  10',
-      values = [ ];
-    const list = await mysql.query(sql, values);
+    const sql = 'SELECT * FROM v_myword WHERE user=? AND type=? order by rand() limit  10 ',
+      values = [ user, type ];
+    let list = await mysql.query(sql, values);
+    let word = await mysql.query('SELECT * FROM v_word WHERE id IN(' + mysql.join(list.map(v => v.word)) + ')');
+    word = array.assoc(word, 'id');
+    list = list.map(v => {
+      itemWord = word[v.word];
+      return {
+        ...v,
+        word: itemWord.word,
+        translate: itemWord.translate,
+      };
+    });
     if (type == 1) {
       for (let i = 0; i < list.length; i++) {
         let options = await mysql.query('SELECT translate FROM v_word order by rand() limit  4 ', [ list[i].id ]);
