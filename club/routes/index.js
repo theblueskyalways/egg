@@ -764,14 +764,12 @@ router.post('/word/test', async (req, res) => {
         translate: itemWord.translate,
       };
     });
-    if (type == 1) {
-      for (let i = 0; i < list.length; i++) {
-        let options = await mysql.query('SELECT translate FROM v_word order by rand() limit  4 ', [ list[i].id ]);
-        options = options.map(v => ({ label: v.translate, isAnswer: false }));
-        const index = Math.ceil(Math.random() * 4 - 1);
-        options[index] = { label: list[i].translate, isAnswer: true };
-        list[i].options = options;
-      }
+    for (let i = 0; i < list.length; i++) {
+      let options = await mysql.query('SELECT translate FROM v_word order by rand() limit  4 ', [ list[i].id ]);
+      options = options.map(v => ({ label: v.translate, isAnswer: false }));
+      const index = Math.ceil(Math.random() * 4 - 1);
+      options[index] = { label: list[i].translate, isAnswer: true };
+      list[i].options = options;
     }
     const count = await mysql.query('SELECT count(*) AS c FROM v_word WHERE 1=1');
     res.json({
