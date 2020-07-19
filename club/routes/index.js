@@ -1,5 +1,6 @@
 const express = require('express'),
   mysql = require('./mysql'),
+  path = require('path'),
   consts = require('./consts'),
   verify = require('./verify'),
   conf = require('../conf.json').badminton,
@@ -10,6 +11,8 @@ const express = require('express'),
   code = require('../common/code'),
   func = require('../common/func'),
   pub = require('./pubALEX'),
+  officegen = require('officegen'),
+  fs = require('fs'),
   router = express.Router();
 
 /* 随机产生一个n位的字母或数字*/
@@ -550,6 +553,109 @@ router.post('/word/order', async (req, res) => {
     await mysql.query('UPDATE v_myword SET order_=? WHERE id=? ', [ endorder, word ]);
 
     res.json({ code: code.OK, msg: '操作成功' });
+  } catch (e) {
+    console.error(e);
+    res.sendStatus(code.InternalError);
+  }
+});
+
+router.get('/word/export', async (req, res) => {
+  try {
+    const user = func.toInt(req.query.user || 0);
+    const data = await mysql.query('SELECT * FROM v_myWord WHERE user=? AND type=?', [ user, consts.NEWWORD ]);
+    const word = await mysql.query('SELECT * FROM v_word WHERE id IN(' + mysql.join(data.map(v => v.word)) + ')');
+    const docx = officegen('docx');
+
+    // Officegen calling this function after finishing to generate the docx document:
+    docx.on('finalize', function(written) {
+      console.log(
+        'Finish to create a Microsoft Word document.'
+      );
+    });
+
+    // Officegen calling this function to report errors:
+    docx.on('error', function(err) {
+      console.log(err);
+    });
+
+    // Create a new paragraph:
+    let pObj = docx.createP();
+
+    pObj.addText('单词大全', { color: '000088', font_size: 40 });
+    pObj = docx.createP();
+    word.forEach((v, index) => {
+      pObj.addText(`${index + 1}.  ${v.word} ${v.translate.replace('\n', ' ')}`);
+      pObj.addText('\n');
+    });
+    pObj = docx.createP();
+
+    pObj.addText('Since ');
+    pObj.addText('officegen 0.2.12', {
+      back: '00ffff',
+      shdType: 'pct12',
+      shdColor: 'ff0000',
+    }); // Use pattern in the background.
+    pObj.addText(' you can do ');
+    pObj.addText('more cool ', { highlight: true }); // Highlight!
+    pObj.addText('stuff!', { highlight: 'darkGreen' }); // Different highlight color.
+
+    pObj = docx.createP();
+
+    pObj.addText('Even add ');
+    pObj.addText('external link', { link: 'https://github.com' });
+    pObj.addText('!');
+
+    pObj = docx.createP();
+
+    pObj.addText('Bold + underline', { bold: true, underline: true });
+
+    pObj = docx.createP({ align: 'center' });
+
+    pObj.addText('Center this text', {
+      border: 'dotted',
+      borderSize: 12,
+      borderColor: '88CCFF',
+    });
+
+    pObj = docx.createP();
+    pObj.options.align = 'right';
+
+    pObj.addText('Align this text to the right.');
+
+    pObj = docx.createP();
+
+    pObj.addText('Those two lines are in the same paragraph,');
+    pObj.addLineBreak();
+    pObj.addText('but they are separated by a line break.');
+
+    docx.putPageBreak();
+
+    pObj = docx.createP();
+
+    pObj.addText('Fonts face only.', { font_face: 'Arial' });
+    pObj.addText(' Fonts face and size.', { font_face: 'Arial', font_size: 40 });
+
+    docx.putPageBreak();
+
+    pObj = docx.createP();
+
+
+    // Let's generate the Word document into a file:
+    let filepath = path.join(__dirname);
+    filepath = filepath.split('/');
+    filepath.pop();
+    filepath.push('public', 'upload');
+    filepath = filepath.join('/');
+    const out = fs.createWriteStream(filepath + '/example.docx');
+
+    out.on('error', function(err) {
+      console.log(err);
+    });
+
+    // Async call to generate the output file:
+    const result = docx.generate(out);// 服务端生成word
+    docx.generate(res);
+
   } catch (e) {
     console.error(e);
     res.sendStatus(code.InternalError);
