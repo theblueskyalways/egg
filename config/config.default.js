@@ -40,14 +40,6 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
-  config.cluster = {
-    listen: {
-      path: '',
-      port: 80,
-      hostname: '127.0.0.1',
-    },
-  };
-
   config.mysql = {
     // database configuration
     client: {
