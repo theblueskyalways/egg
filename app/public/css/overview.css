@@ -6,7 +6,7 @@
 }
 .welcome{
     box-sizing: border-box;
-    background: url("../img/overview/bg-welcometooverwatch-3.jpg") no-repeat;
+    background: url("http://image.theblueskyalways.cn/img/overview/bg-welcometooverwatch-3.jpg") no-repeat;
     background-size: cover;
     position: relative;
     z-index: 1;
@@ -66,13 +66,13 @@
     content: '';
     width: 100%;
     height: 100%;
-    background: url("../img/overview/game_teams_bg.jpg") no-repeat center;
+    background: url("http://image.theblueskyalways.cn/img/overview/game_teams_bg.jpg") no-repeat center;
     background-size: cover;
     z-index: -1;
 
 }
 .team-heros .left-img{
-     background: url("../img/overview/game_teams_left.png") no-repeat;
+     background: url("http://image.theblueskyalways.cn/img/overview/game_teams_left.png") no-repeat;
      background-size: auto 100%;
      width: 60%;
      height: calc(100% + 60px);
@@ -83,7 +83,7 @@
 
  }
 .team-heros .right-img{
-    background: url("../img/overview/game_teams_right.png") no-repeat;
+    background: url("http://image.theblueskyalways.cn/img/overview/game_teams_right.png") no-repeat;
     background-position: right bottom;
     background-size: auto 100%;
     width: 60%;
@@ -209,7 +209,7 @@
     margin-top: 40px;
 }
 .maps-section{
-    background: url("../img/overview/bg-maps-section-new.jpg");
+    background: url("http://image.theblueskyalways.cn/img/overview/bg-maps-section-new.jpg");
     background-size: cover;
 }
  .map-type-icon {
@@ -279,7 +279,7 @@
     background-size: cover;
 }
 .map.ayutthaya{
-    background:url("../img/overview/assets%20img%20pagesgameCNA33SG70CA61520288193582.jpg");
+    background:url("http://image.theblueskyalways.cn/img/overview/assets%20img%20pagesgameCNA33SG70CA61520288193582.jpg");
     background-size: cover;
 }
 .map-content{
@@ -356,7 +356,7 @@
 }
 
 .match-section{
-    background-image: url("../img/overview/bg-howtoplay.jpg");
+    background-image: url("http://image.theblueskyalways.cn/img/overview/bg-howtoplay.jpg");
     background-size: cover;
     width: 100%;
     padding-top: 80px;
@@ -424,7 +424,7 @@
     color:#ff9c00;
 }
 .game-modes-section{
-    background-image: url("../img/overview/bg-gameModes.jpg");
+    background-image: url("http://image.theblueskyalways.cn/img/overview/bg-gameModes.jpg");
     background-size: cover;
     border-bottom: 5px solid hsla(0,0%,100%,.5);
     padding-bottom: 80px;
@@ -459,25 +459,25 @@
     background-color: #fff;
 }
 .game-modes-item.practice{
-    background-image: url("../img/overview/thumb-practiceRange.jpg");
+    background-image: url("http://image.theblueskyalways.cn/img/overview/thumb-practiceRange.jpg");
 }
 .game-modes-item.ai{
-    background-image: url("../img/overview/thumb-vsAI.jpg");
+    background-image: url("http://image.theblueskyalways.cn/img/overview/thumb-vsAI.jpg");
 }
 .game-modes-item.quick{
-    background-image: url("../img/overview/thumb-quickPlay.jpg");
+    background-image: url("http://image.theblueskyalways.cn/img/overview/thumb-quickPlay.jpg");
 }
 .game-modes-item.custom{
-    background-image: url("../img/overview/thumb-customGame.jpg");
+    background-image: url("http://image.theblueskyalways.cn/img/overview/thumb-customGame.jpg");
 }
 .game-modes-item.arcade{
-    background-image: url("../img/overview/thumb-arcade.jpg");
+    background-image: url("http://image.theblueskyalways.cn/img/overview/thumb-arcade.jpg");
 }
 .game-modes-item.competitive{
-    background-image: url("../img/overview/thumb-competitivePlay.jpg");
+    background-image: url("http://image.theblueskyalways.cn/img/overview/thumb-competitivePlay.jpg");
 }
 .friends-section{
-    background-image: url("../img/overview/game_teams_bg.jpg");
+    background-image: url("http://image.theblueskyalways.cn/img/overview/game_teams_bg.jpg");
 }
 .sub-nav-menu{
     position: fixed;

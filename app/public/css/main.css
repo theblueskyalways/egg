@@ -46,7 +46,7 @@
         transition: opacity .5s ease 0s;
         text-indent: -999px;
         opacity: .8;
-        background: url('../img/index/1%252Fimages%252Fheroes%252Fdetail%252Fexit.3OOEf.png') 0 0 no-repeat;
+        background: url('http://image.theblueskyalways.cn/img/index/1%252Fimages%252Fheroes%252Fdetail%252Fexit.3OOEf.png') 0 0 no-repeat;
         background-size: contain;}
     .bg{
         width: 100%;
@@ -93,7 +93,7 @@ background-color: #FFF;
         min-width: 350px;
         z-index: 21;
         width: 30%;
-        background: url("../img/index/1%252Fassets%252Fimg%252Fpages%252Fhome%252Fanniversary%252Flogo-overwatch-full.png") center no-repeat;
+        background: url("http://image.theblueskyalways.cn/img/index/1%252Fassets%252Fimg%252Fpages%252Fhome%252Fanniversary%252Flogo-overwatch-full.png") center no-repeat;
         background-size: 100% 100%;
         height: 30%;
     }
@@ -142,7 +142,7 @@ background-color: #FFF;
         height: 19px;
         margin-right: 8px;
         display: inline-block;
-        background: url(../img/index/Farrawbutton.png) 0 -49px;
+        background: url(http://image.theblueskyalways.cn/img/index/Farrawbutton.png) 0 -49px;
         vertical-align: middle;
     }
     .home-header__intrduce:hover{
@@ -171,7 +171,7 @@ background-color: #FFF;
     }
     .news-panels .grid-item.left .content-bg{
         display: block;
-        background: url("../img/index/Fc7952798cfcdb84ceed46f9f803fd3ae.jpg");
+        background: url("http://image.theblueskyalways.cn/img/index/Fc7952798cfcdb84ceed46f9f803fd3ae.jpg");
         background-repeat: no-repeat;
         background-size: 100%;
         background-origin: content-box;
@@ -186,7 +186,7 @@ background-color: #FFF;
     }
     .news-panels .grid-item.right .content-bg{
         display: block;
-        background: url("../img/index/F0772b627b319b0296d9e889505280784.jpg");
+        background: url("http://image.theblueskyalways.cn/img/index/F0772b627b319b0296d9e889505280784.jpg");
         background-origin: content-box;
         background-repeat: no-repeat;
         background-size: 100%;
@@ -229,7 +229,7 @@ background-color: #FFF;
     }
     .activity{
         width: 100%;
-        background: url("../img/index/Fnano_cola_bg.jpg") no-repeat bottom center;
+        background: url("http://image.theblueskyalways.cn/img/index/Fnano_cola_bg.jpg") no-repeat bottom center;
         background-size: cover;
 
     }
@@ -292,7 +292,7 @@ background-color: #FFF;
     .media-card:before{
         content: '';
         display: block;
-        background: url("../img/index/youtube-btn-ylw.png");
+        background: url("http://image.theblueskyalways.cn/img/index/youtube-btn-ylw.png");
         width: 140px;
         height: 140px;
         position: absolute;
@@ -330,13 +330,13 @@ background-color: #FFF;
 
     }
     .explore .bg.fir{
-        background-image:  url("../img/index/Fcairo-desktop.jpg");
+        background-image:  url("http://image.theblueskyalways.cn/img/index/Fcairo-desktop.jpg");
     }
     .explore .bg.sec{
-        background-image:  url("../img/index/fight-for-the-future%252Flondon-2560.jpg");
+        background-image:  url("http://image.theblueskyalways.cn/img/index/fight-for-the-future%252Flondon-2560.jpg");
     }
     .explore .bg.thr{
-        background-image:  url("../img/index/fight-for-the-future%252Fvolskaya-2560.jpg");
+        background-image:  url("http://image.theblueskyalways.cn/img/index/fight-for-the-future%252Fvolskaya-2560.jpg");
     }
     .explore .intro-heading{
         color: white;
@@ -373,7 +373,7 @@ background-color: #FFF;
         margin: auto;
     }
     .hero-content{
-        background: url("../img/index/hero-bg.jpg") no-repeat ;
+        background: url("http://image.theblueskyalways.cn/img/index/hero-bg.jpg") no-repeat ;
         margin: 0 auto;
         background-size: 100% 100%;
         padding: 50px 0 ;
