@@ -9,7 +9,7 @@ footer{
 }
 .footer .icon{
     display: inline-flex;
-    background: url("../img/index/sprite-24-blue.png");
+    background: url("http://image.theblueskyalways.cn/img/index/sprite-24-blue.png");
     width: 20px;
     height: 20px;
     vertical-align: middle;
@@ -42,13 +42,13 @@ footer a{
     margin-bottom: 20px;
 }
 .logo_bz{
-    background: url("../img/index/blizzardbottom.png") no-repeat center;
+    background: url("http://image.theblueskyalways.cn/img/index/blizzardbottom.png") no-repeat center;
     width: 133px;
     height: 71px;
     display: inline-block;
 }
 .logo_ne{
-    background: url("../img/index/logo_ne.png") no-repeat center;
+    background: url("http://image.theblueskyalways.cn/img/index/logo_ne.png") no-repeat center;
     width: 140px;
     height: 38px;
     display: inline-block;
