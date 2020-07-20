@@ -330,13 +330,13 @@ background-color: #FFF;
 
     }
     .explore .bg.fir{
-        background-image:  url("http://image.theblueskyalways.cn/img/index/Fcairo-desktop.jpg");
+        background-image:  url("http://image.theblueskyalways.cn/Fcairo-desktop.jpg");
     }
     .explore .bg.sec{
-        background-image:  url("http://image.theblueskyalways.cn/img/index/fight-for-the-future%252Flondon-2560.jpg");
+        background-image:  url("http://image.theblueskyalways.cn/fight-for-the-future%252Flondon-2560.jpg");
     }
     .explore .bg.thr{
-        background-image:  url("http://image.theblueskyalways.cn/img/index/fight-for-the-future%252Fvolskaya-2560.jpg");
+        background-image:  url("http://image.theblueskyalways.cn/fight-for-the-future%252Fvolskaya-2560.jpg");
     }
     .explore .intro-heading{
         color: white;
@@ -373,7 +373,7 @@ background-color: #FFF;
         margin: auto;
     }
     .hero-content{
-        background: url("http://image.theblueskyalways.cn/img/index/hero-bg.jpg") no-repeat ;
+        background: url("http://image.theblueskyalways.cn/hero-bg.jpg") no-repeat ;
         margin: 0 auto;
         background-size: 100% 100%;
         padding: 50px 0 ;
@@ -499,7 +499,7 @@ background-color: #FFF;
         background-color: white;
     }
     .middle-bg{
-        background: url("http://image.theblueskyalways.cn/img/index/Fdorado-desktop.jpg") no-repeat center;
+        background: url("http://image.theblueskyalways.cn/Fdorado-desktop.jpg") no-repeat center;
         background-size:100% 100%;
         position: fixed;
         bottom: 0;
@@ -535,7 +535,7 @@ background-color: #FFF;
     }
 
     .join{
-        background: url("http://image.theblueskyalways.cn/img/index/bg-museum.jpg") no-repeat;
+        background: url("http://image.theblueskyalways.cn/bg-museum.jpg") no-repeat;
         background-size:  100%;
         padding: 50px 0;
     }
@@ -559,7 +559,7 @@ background-color: #FFF;
         position: relative;
     }
     .widowmaker-default-pc{
-        background: url("http://image.theblueskyalways.cn/img/index/widowmaker-default-pc.png");
+        background: url("http://image.theblueskyalways.cn/widowmaker-default-pc.png");
         background-size: 100% auto;
         width: 50%;
         height: 972px;
