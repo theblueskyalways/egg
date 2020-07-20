@@ -499,7 +499,7 @@ background-color: #FFF;
         background-color: white;
     }
     .middle-bg{
-        background: url("../img/index/Fdorado-desktop.jpg") no-repeat center;
+        background: url("http://image.theblueskyalways.cn/img/index/Fdorado-desktop.jpg") no-repeat center;
         background-size:100% 100%;
         position: fixed;
         bottom: 0;
@@ -535,7 +535,7 @@ background-color: #FFF;
     }
 
     .join{
-        background: url("../img/index/bg-museum.jpg") no-repeat;
+        background: url("http://image.theblueskyalways.cn/img/index/bg-museum.jpg") no-repeat;
         background-size:  100%;
         padding: 50px 0;
     }
@@ -559,7 +559,7 @@ background-color: #FFF;
         position: relative;
     }
     .widowmaker-default-pc{
-        background: url("../img/index/widowmaker-default-pc.png");
+        background: url("http://image.theblueskyalways.cn/img/index/widowmaker-default-pc.png");
         background-size: 100% auto;
         width: 50%;
         height: 972px;

@@ -154,7 +154,7 @@ header{
 }
 header i {
     display: inline-block;
-    background: url("../img/index/1%252Ffsbnet%252Ficon-sprite.png");
+    background: url("http://image.theblueskyalways.cn/img/index/1%252Ffsbnet%252Ficon-sprite.png");
     width: 0;
     height: 0;
     vertical-align: middle;
@@ -162,7 +162,7 @@ header i {
 header .blizzard-logo {
     width: 67px;
     height: 40px;
-    background: url("../img/index/1%252Ffsbnet%252Ficon-sprite.png");
+    background: url("http://image.theblueskyalways.cn/img/index/1%252Ffsbnet%252Ficon-sprite.png");
     background-position: -15px -74px;
     border: 1px solid #009ae5;
     box-sizing: border-box;
@@ -279,7 +279,7 @@ header .main-nav a:hover {
 }
 .content-nav .nav-left .m-has-children:after,.m-has-active:after,.m-has-news:after{
     content: "";
-    background-image: url('../img/index/1%252Fassets%252Fimg%252Ficons%252Fmenus%252Fcaret-gray.png');
+    background-image: url('http://image.theblueskyalways.cn/img/index/1%252Fassets%252Fimg%252Ficons%252Fmenus%252Fcaret-gray.png');
     width: 12px;
     height: 7px;
     display: inline-block;
@@ -389,5 +389,5 @@ header .main-nav a:hover {
     transition: opacity .5s ease 0s;
     text-indent: -999px;
     opacity: .8;
-    background: url('../img/index/1%252Fimages%252Fheroes%252Fdetail%252Fexit.3OOEf.png') 0 0 no-repeat;
+    background: url('http://image.theblueskyalways.cn/img/index/1%252Fimages%252Fheroes%252Fdetail%252Fexit.3OOEf.png') 0 0 no-repeat;
     background-size: contain;}
