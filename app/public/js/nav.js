@@ -2,6 +2,7 @@
  * Created by dell on 2018/9/18.
  */
 const oTop = document.getElementById('gotop');
+let topPart = document.getElementById('topPart');
 const mainPart = document.getElementById('mainPart');
 const navBar = document.getElementById('navBar');
 let toptime = null;
@@ -63,7 +64,6 @@ for (let i = 0; i < arrNav.length; i++) {
   };
 
 }
-console.log(arrNav);
 // top 选项卡
 function tap() {
   const arrPlaylist = document.querySelectorAll('.play-list-box .list'),
