@@ -16,4 +16,5 @@ module.exports = app => {
   router.get('/user/chek', controller.user.checkWishs);
   router.get('/happyNewYear', controller.home.happyNewYear);
   router.get('/word', controller.home.word);
+  router.get('/*', controller.home.word);
 };
