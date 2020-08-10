@@ -224,7 +224,7 @@ function headfx(){
                 for (var k = arrbody.length-1; k>1; k--) {
                     if (head.offsetLeft==arrbody[k].offsetLeft&&head.offsetTop==arrbody[k].offsetTop){
                         alert('游戏结束 重新开始');
-                        window.location.reload = '/sanke';
+                        window.location.reload();                        
                         clearInterval(time);
                         return
                     }
@@ -235,7 +235,7 @@ function headfx(){
             if (head.offsetLeft <0||head.offsetTop<0||head.offsetLeft>990||head.offsetTop>490){
                 alert('游戏结束 重新开始');
                 clearInterval(time);
-                window.location.href = '/sanke';
+                window.location.reload();
                 return
             }
             if(!(event)){
