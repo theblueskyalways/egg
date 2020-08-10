@@ -215,14 +215,16 @@ function headfx(){
         hdbg.classList.add('down');
     }
 }
+
+
         //移动
         function move (){
 
             function over(){
                 for (var k = arrbody.length-1; k>1; k--) {
                     if (head.offsetLeft==arrbody[k].offsetLeft&&head.offsetTop==arrbody[k].offsetTop){
-                        alert('游戏结束');
-                        window.location.href = '/';
+                        alert('游戏结束 重新开始');
+                        window.location.reload;
                         clearInterval(time);
                         return
                     }
@@ -231,9 +233,9 @@ function headfx(){
             over();
             eat();
             if (head.offsetLeft <0||head.offsetTop<0||head.offsetLeft>990||head.offsetTop>490){
-                alert('游戏结束');
+                alert('游戏结束 重新开始');
                 clearInterval(time);
-                window.location.href = '/';
+                window.location.reload;
                 return
             }
             if(!(event)){
