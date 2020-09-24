@@ -889,5 +889,58 @@ router.post('/word/test', async (req, res) => {
   }
 });
 
+// fitness
+
+router.post('/word/fitness', async (req, res) => {
+  try {
+    const data = func.trim(req.body.params.data || ''),
+      user = func.toInt(req.body.params.user || 0),
+      pagecount = func.toInt(req.body.params.count || 0),
+      page = func.toInt(req.body.params.page);
+    let sql = 'SELECT * FROM v_fitness WHERE 1=1 AND user=?',
+      values = [ user ];
+    sql += ' ORDER BY ctime ASC LIMIT ?,?';
+    values = values.concat([ (page - 1) * (pagecount || consts.PAGE_SIZE), pagecount || consts.PAGE_SIZE ]);
+    let list = await mysql.query(sql, values);
+    list = list.map(v => {
+      return {
+        ...v,
+        ctime: moment.unix(v.ctime).format('YYYY-MM-DD'),
+      };
+    });
+    const count = await mysql.count(sql, values);
+    res.json({
+      code: code.OK,
+      list,
+      total: count,
+    });
+  } catch (e) {
+    console.error(e);
+    res.sendStatus(code.InternalError);
+  }
+});
+
+/* fitnessadd */
+
+router.post('/word/fitnessadd', async (req, res) => {
+  try {
+    const id = func.trim(req.body.params.id || 0),
+      data = func.trim(req.body.params.data || ''),
+      user = func.toInt(req.body.params.user);
+    if (func.empty(data)) return res.json(code.message(code.InvalidParam));
+    if (id <= 0) {
+      const result = await mysql.query('INSERT INTO v_fitness(data,ctime,user) VALUES(?,?,?)', [
+        data, func.now(), user,
+      ]);
+    } else if (id > 0) {
+      await mysql.query('UPDATE v_fitness SET data=? WHERE id=?', [ data, id ]);
+    }
+    res.json({ code: code.OK, msg: id > 0 ? '编辑成功' : '创建成功' });
+  } catch (e) {
+    console.error(e);
+    res.sendStatus(code.InternalError);
+  }
+});
+
 
 module.exports = router;
