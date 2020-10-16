@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>和文老师故事</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<style type="text/css">
+		@font-face {
+			font-family: digit;
+			src: url('digital-7_mono.ttf') format("truetype");
+		}
+	</style>
+	<link href="/public/css/default_dev.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="/public/js/jquery.js"></script>
+	<script type="text/javascript" src="/public/js/garden_dev.js"></script>
+    <script type="text/javascript" src="/public/js/functions_dev.js"></script>
+</head>
+
+<body>
+	<div id="mainDiv">
+		<div id="content">
+			<div id="code">
+				<span class="comments">/**</span><br />
+				<span class="space"/><span class="comments">* 我们相识在一个有趣的软件</span><br />
+				<span class="space"/><span class="comments">* 认识你是个非常巧合的巧合</span><br />
+				<span class="space"/><span class="comments">*/</span><br />
+				<!-- Boy i = <span class="keyword">new</span> Boy(<span class="string">"hackerzhou"</span>);<br />
+				Girl u = <span class="keyword">new</span> Girl(<span class="string">"MaryNee"</span>);<br /> -->
+				<span class="comments">// Der 22, 2019, 我主动说了第一句话 </span><br />
+				我: 1021天<br />
+				我: 应该是我认识朋友里面最最久的了<br />
+				<span class="comments">// 幸运的是你回复了我.</span><br />
+                你: 确实挺少<br />
+                你: 我最初关注的人都离开了<br />
+				<span class="comments">// 不久我们发现彼此很有默契.</span><br />
+				<span class="comments">// 而且废话很多的聊了下去.</span><br />
+				<span class="comments">// 我每天都在期待着和你聊天.</span><br />
+				<span class="comments">// 没什么别的原因，就是因为和你聊天心情都会变得好起来.</span><br />
+				<span class="comments">// 每天下班都会期待和你聊几句的时光.</span><br />
+				<span class="comments">// 时间飞逝，转眼一年过去了.</span><br />
+				<span class="comments">// 我很幸运的赶上了你的生日.</span><br />
+				<span class="comments">// 只能这样祝18岁的卷毛毛生日快乐.</span><br />
+				<span class="comments">// 未完待续...</span><br />
+				<span class="comments">// 2020年1月17日 这是难忘的一天</span><br />
+				<span class="comments">// 在上班的地铁上看了信</span><br />
+				<span class="comments">// 看到一半我不敢接着看</span><br />
+				<span class="comments">// 我恍惚了一早上</span><br />
+				<span class="comments">// 可能我们之间沟通上还是有点差强人意</span><br />
+				<span class="comments">// 但是这段我不知道是什么的关系还是让我记忆深刻</span><br />
+				<span class="comments">// 很幸运认识你</span><br />
+				<span class="comments">// 很不幸认识你</span><br />
+				<span class="comments">// 完</span><br />
+				<!-- <span class="keyword">boolean</span> isHesitate = <span class="keyword">true</span>;<br /> -->
+				<!-- <span class="keyword">while</span> (isHesitate) {<br /> -->
+				<!-- <span class="placeholder"/>i.waitFor(u);<br /> -->
+		
+				<!-- <span class="placeholder"/>isHesitate = u.thinkOver();<br />
+				}<br />
+				<span class="comments">// After a romantic wedding, we will live happily ever after.</span><br />
+				i.marry(u);<br />
+				i.liveHappilyWith(u);<br /> -->
+			</div>
+			<div id="loveHeart">
+				<canvas id="garden"></canvas>
+				<div id="words">
+					<div id="messages">
+						卷毛毛, 我们已经陌生了这么多时间
+						<div id="elapseClock"></div>
+					</div>
+					<div id="messages">
+						
+						<div id="levaveClock"></div>
+					</div>
+					<!-- <div id="loveu">
+						Love u forever and ever.<br/>
+						<div class="signature">- hackerzhou</div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+		<!-- <div id="copyright">
+			Inspired by <a href="http://www.openrise.com/lab/FlowerPower/">FlowerPower</a> project.<br />
+			Copyright © 2020 <a href='http://theblueskyalways.cn'>theblueskyalways.cn</a> 2020-2020
+		</div> -->
+	</div>
+	<script type="text/javascript">
+		var offsetX = $("#loveHeart").width() / 2;
+		var offsetY = $("#loveHeart").height() / 2 - 55;
+		var together = new Date();
+		together.setFullYear(2019);
+        together.setMonth(11);
+        together.setDate(22);
+		together.setHours(16);
+		together.setMinutes(26);
+		together.setSeconds(0);
+		together.setMilliseconds(0);
+		var leave = new Date();
+		leave.setFullYear(2020);
+        leave.setMonth(0);
+        leave.setDate(17);
+		leave.setHours(0);
+		leave.setMinutes(0);
+		leave.setSeconds(0);
+		leave.setMilliseconds(0);
+		if (!document.createElement('canvas').getContext) {
+			var msg = document.createElement("div");
+			msg.id = "errorMsg";
+			msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
+			document.body.appendChild(msg);
+			$("#code").css("display", "none")
+			$("#copyright").css("position", "absolute");
+			$("#copyright").css("bottom", "10px");
+		    document.execCommand("stop");
+		} else {
+			setTimeout(function () {
+				startHeartAnimation();
+			}, 5000);
+			timeElapse(leave, 'elapseClock');
+			timeElapse(leave, 'leaveClock');
+			setInterval(function () {
+				timeElapse(leave, 'elapseClock');
+				timeElapse(leave, 'leaveClock');
+			}, 500);
+			adjustCodePosition();
+			$("#code").typewriter();
+		}
+	</script>
+</body>
+</html>

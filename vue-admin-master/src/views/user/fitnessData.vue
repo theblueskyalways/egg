@@ -119,7 +119,6 @@
             },
             renderChart(){
                 this.chart = document.getElementById('echarts');
-                console.log(this.chart)
                 let myChart = echarts.init(this.chart);
                 let option = {
                     xAxis: {
@@ -127,7 +126,9 @@
                         data: this.clubList.map(v=>v.ctime)
                     },
                     yAxis: {
-                        type: 'value'
+                        type: 'value',
+                        min: 'dataMin',
+                        minInterval:0.01
                     },
                     series: [{
                         data: this.clubList.map(v=>v.data),
