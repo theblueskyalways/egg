@@ -43,17 +43,17 @@
 			</el-table-column> -->
 			<el-table-column label="编号" type="index"  width="60">
 			</el-table-column>
-			<el-table-column  width="auto"  show-overflow-tooltip prop="wordName" label="单词" sortable>
+			<el-table-column  width="auto"  show-overflow-tooltip prop="wordName" label="单词" >
 				<template scope="scope">
 					{{ wordVisible? scope.row.wordName:''}}
 				</template>
 			</el-table-column>
-			<el-table-column  show-overflow-tooltip	 prop="translate" label="翻译" sortable>
+			<el-table-column  show-overflow-tooltip	 prop="translate" label="翻译" >
 				<template scope="scope">
 					{{ translateVisible? scope.row.translate:''}}
 				</template>
 			</el-table-column>
-			<el-table-column prop="ctime" label="添加时间" sortable>
+			<el-table-column prop="ctime" label="添加时间">
 			</el-table-column>
 			<el-table-column label="操作">
 				<template scope="scope">
@@ -127,25 +127,25 @@
 			}
 		},
 		methods: {
-			rowDrop() {
-				const tbody = document.querySelector('.el-table__body-wrapper tbody');
-				var _this = this;
-            	new Sortable(tbody,{
-					onEnd:({oldIndex, newIndex})=>{
-						let para = {
-							offset:oldIndex-newIndex,
-							word:this.clubList[oldIndex].id,
-							startorder:this.clubList[oldIndex].order_,
-							endorder:this.clubList[newIndex].order_,
-		                    user: JSON.parse(sessionStorage.getItem('user')).id
+			// rowDrop() {
+			// 	const tbody = document.querySelector('.el-table__body-wrapper tbody');
+			// 	var _this = this;
+            // 	new Sortable(tbody,{
+			// 		onEnd:({oldIndex, newIndex})=>{
+			// 			let para = {
+			// 				offset:oldIndex-newIndex,
+			// 				word:this.clubList[oldIndex].id,
+			// 				startorder:this.clubList[oldIndex].order_,
+			// 				endorder:this.clubList[newIndex].order_,
+		    //                 user: JSON.parse(sessionStorage.getItem('user')).id
 
-						}
-						changeOrder(para).then((res) => {
-							this.getUserwordList();							
-						});
-					}
-				})
-    		},
+			// 			}
+			// 			changeOrder(para).then((res) => {
+			// 				this.getUserwordList();							
+			// 			});
+			// 		}
+			// 	})
+    		// },
 			handleCurrentChange(val) {
 				this.page = val;
 				this.getUserwordList();
@@ -168,7 +168,7 @@
 					this.allwordnumber = res.data.allword;
                     this.clubList = res.data.list;
 					this.listLoading = false;
-					this.rowDrop();
+					// this.rowDrop();
 				});
             },
             //显示新增界面

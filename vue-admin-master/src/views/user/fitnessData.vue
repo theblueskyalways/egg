@@ -135,7 +135,6 @@
                         type: 'line'
                     }]
                 };
-                console.log(option)
                 myChart.setOption(option);
             },
             addSubmit(){

@@ -37,7 +37,6 @@ router.get('/logout', function(req, res) {
 /* 账号密码校验*/
 router.post('/login', async (req, res) => {
   try {
-    console.log(2222);
     const phone = func.trim(req.body.phone || ''),
       password = func.trim(req.body.password || '');
     if (func.empty(phone) || func.empty(password)) return res.json(code.message(code.InvalidParam));
